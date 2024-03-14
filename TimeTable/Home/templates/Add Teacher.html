@@ -13,7 +13,8 @@
     <div class="container">
         <header>Add Teachers</header>
 
-        <form action="#">
+        <form method="POST">
+            {% csrf_token %}
             <div class="form first">
                 <div class="details personal">
                     <span class="title">Details</span>
@@ -21,31 +22,30 @@
                     <div class="fields">
                         <div class="input-field">
                             <label>Teacher Name</label>
-                            <input type="text" placeholder="Enter your name" required>
+                            <input type="text" placeholder="Enter your name" required name="teacher_name">
                         </div>
 						<div class="input-field">
                             <label>Teacher Designation</label>
-                            <input type="text" placeholder="Enter Teacher Designation" required>
+                            <input type="text" placeholder="Enter Teacher Designation" required name="teacher_desig">
                         </div>
 						<div class="input-field">
                             <label>Teacher Subject</label>
-                            <input type="text" placeholder="Enter your Subject" required>
+                            <input type="text" placeholder="Enter your Subject" required name="subjects">
                         </div>
                    
 				   
-
                     <div class="buttons">
                         <div class="backBtn">
                           
                             <span class="btnText">View Edit Teachers</span>
                         </div>
                         
-                        <button class="sumbit">
+                        <button class="sumbit" type="submit">
                             <span class="btnText">Add Teacher</span>
                             
                         </button>
 						<button class="sumbit">
-                            <span class="btnText">GOT0</span>
+                            <span class="btnText">GOTO</span>
                             
                         </button>
                     </div>
@@ -54,6 +54,7 @@
         </form>
     </div>
 
-    <script src="static/javasript/script.js"></script>
+    <script src="static/javascript/script.js"></script>
+
 </body>
 </html>

@@ -20,7 +20,7 @@ def add_dept(request):
 def add_teacher(request):
     if request.method == 'POST':
         data = request.POST
-        
+        teacher_name = data.get('teacher_name')
     return render(request, "Add Teacher.html")
 
 def index(request):

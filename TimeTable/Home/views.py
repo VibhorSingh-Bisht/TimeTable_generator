@@ -50,3 +50,6 @@ def add_timing(request):
 
 def login(request):
     pass
+
+def add_department(request):
+    pass

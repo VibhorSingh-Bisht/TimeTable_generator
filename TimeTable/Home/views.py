@@ -53,3 +53,6 @@ def login(request):
 
 def add_department(request):
     pass
+
+def time_table(request):
+    pass

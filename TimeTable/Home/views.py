@@ -47,3 +47,6 @@ def dashboard(request):
 def add_timing(request):
     if request.method == 'post':
         data = request.POST
+
+def login(request):
+    pass

@@ -12,3 +12,14 @@ class course_data(models.Model):
     course_name = models.CharField(max_length=25)
     course_c = models.PositiveSmallIntegerField()
     course_subs = models.CharField(max_length=200)
+
+class timing_data(models.Model):
+    course_name = models.CharField(max_length=25)
+    course_c = models.PositiveSmallIntegerField()
+    course_subs = models.CharField(max_length=200)
+
+
+class department_data(models.Model):
+    course_name = models.CharField(max_length=25)
+    course_c = models.PositiveSmallIntegerField()
+    course_subs = models.CharField(max_length=200)

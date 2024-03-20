@@ -49,7 +49,7 @@ def add_timing(request):
         data = request.POST
 
 def login(request):
-    pass
+    return render(request,'login.html')
 
 def add_department(request):
     pass

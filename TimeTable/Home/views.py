@@ -10,12 +10,12 @@ def add_course(request):
     if request.method == 'POST':
         data = request.POST
         course_name = data.get('course_name')
-        course_d = data.get('course_d')
+        course_c = data.get('course_c')
         course_subs = data.get('subjects')
-        print(course_name, course_d,course_subs)
+        print(course_name, course_c,course_subs)
         teacher_data.objects.create(
             course_name  = course_name,
-            course_d = course_d,
+            course_d = course_c,
             course_subs = course_subs
         )
     return render(request,"Add Course.html")

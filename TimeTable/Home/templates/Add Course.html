@@ -10,6 +10,98 @@
     <title>Add Course</title> 
 </head>
 <body>
+    <nav class="sidebar locked">
+        <div class="logo_items flex">
+          <span class="nav_image"></span>
+          <span class="logo_name">TIME TABLE</span>
+          <i class="bx bx-lock-alt" id="lock-icon" title="Unlock Sidebar"></i>
+          <i class="bx bx-x" id="sidebar-close"></i>
+        </div>
+    
+        <div class="menu_container">
+          <div class="menu_items">
+            <!-- Your sidebar menu items here -->
+            <ul class="menu_item">
+              <div class="menu_title flex">
+                <span class="title">Dashboard</span>
+                <span class="line"></span>
+              </div>
+              <li class="item">
+                <a href="#" class="link flex">
+                  <i class="bx bx-home-alt"></i>
+                  <span>Overview</span>
+                </a>
+              </li>
+              <li class="item">
+                <a href="" class="link flex">
+                  <i class="bx bx-grid-alt"></i>
+                  <span>HOME</span>
+                </a>
+              </li>
+            </ul>
+    
+    
+            <ul class="menu_item">
+              <div class="menu_title flex">
+                <span class="title">Editor</span>
+                <span class="line"></span>
+              </div>
+              <li class="item">
+                <a href="#" class="link flex">
+                  <i class="bx bxs-magic-wand"></i>
+                  <span>ADD TEACHER</span>
+                </a>
+              </li>
+              <li class="item">
+                <a href="#" class="link flex">
+                  <i class="bx bx-folder"></i>
+                  <span>ADD COURSE</span>
+                </a>
+              </li>
+              <li class="item">
+                <a href="#" class="link flex">
+                  <i class="bx bx-cloud-upload"></i>
+                  <span>ADD ROOM</span>
+                </a>
+              </li>
+            </ul>
+    
+            <li class="item">
+              <a href="#" class="link flex">
+                <i class="bx bx-cloud-upload"></i>
+                <span>ADD TIMING</span>
+              </a>
+            </li>
+          </ul>
+    
+          <ul class="menu_item">
+            <div class="menu_title flex">
+              <span class="title">Setting</span>
+              <span class="line"></span>
+            </div>
+            <li class="item">
+              <a href="#" class="link flex">
+                <i class="bx bx-flag"></i>
+                <span>Notice Board</span>
+              </a>
+            </li>
+            <li class="item">
+              <a href="#" class="link flex">
+                <i class="bx bx-award"></i>
+                <span>Award</span>
+              </a>
+            </li>
+            <li class="item">
+              <a href="#" class="link flex">
+                <i class="bx bx-cog"></i>
+                <span>Setting</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div> <!-- Closing div for menu_container -->
+    
+    </nav>
     <div class="container">
         <header>Add Course</header>
         <form action="#" method="post">
@@ -20,22 +112,19 @@
                     <div class="fields">
                         <div class="input-field">
                             <label>Course Name</label>
-                            <input name="Course_name" type="text" placeholder="Enter your course name" required>
+                            <input name="Course_name" type="text" placeholder="Enter your course name" required name="course_name">
                         </div>
 
                         <div class="input-field">
                             <label>Course Class</label>
-                            <input name="Lts" type="number" placeholder="Enter class (Lts)" required>
+                            <input name="Lts" type="number" placeholder="Enter class (Lts)" required name="course_c">
                         </div>
 
 			    
                         <div class="input-field">
                             <label>Course Subject</label>
-                            <input name="Lts" type="text" placeholder="Enter subject name" required>
+                            <input name="Lts" type="text" placeholder="Enter subject name" required name="subjects">
                         </div>
-
-
-                   
 
                     <div class="buttons">
                         <div class="backBtn">

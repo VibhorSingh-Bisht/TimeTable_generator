@@ -4,7 +4,7 @@ from .models import *
 # Create your views here.
 
 def home(request):
-    return render(request, "Add Teacher.html")#, context={'peoples':peoples})
+    return render(request, "index.html")#, context={'peoples':peoples})
 
 def add_course(request):
     if request.method == 'POST':

@@ -7,7 +7,18 @@ def home(request):
     return render(request, "Add Teacher.html")#, context={'peoples':peoples})
 
 def add_course(request):
-    return render(request,"Add Teacher.html")
+    if request.method == 'POST':
+        data = request.POST
+        course_name = data.get('course_name')
+        course_d = data.get('course_d')
+        course_subs = data.get('subjects')
+        print(course_name, course_d,course_subs)
+        teacher_data.objects.create(
+            course_name  = course_name,
+            course_d = course_d,
+            course_subs = course_subs
+        )
+    return render(request,"Add Course.html")
 
 def add_dept(request):
     pass
@@ -34,4 +45,5 @@ def dashboard(request):
     pass
 
 def add_timing(request):
-    pass
+    if request.method == 'post':
+        data = request.POST

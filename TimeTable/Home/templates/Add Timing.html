@@ -13,7 +13,8 @@
     <div class="container">
         <header>Timing</header>
 
-        <form action="#">
+        <form action="#" method = 'post'>
+            { %csrf_token% }
             <div class="form first">
                 <div class="details personal">
                     <span class="title">Details</span>
@@ -21,12 +22,12 @@
                     <div class="fields">
                         <div class="input-field">
                             <label> Enter Timing</label>
-                            <input type="number" placeholder="Enter your Timing" required>
+                            <input type="number" placeholder="Enter your Timing" required name="">
                         </div>
 
                         <div class="input-field">
                             <label>  Name subject</label>
-                            <input type="text" placeholder="Enter the subject" required>
+                            <input type="text" placeholder="Enter the subject" required name="">
                         </div>
 
                    
@@ -42,7 +43,7 @@
                             
                         </button>
 						<button class="sumbit">
-                            <span class="btnText">GOT0</span>
+                            <span class="btnText">GOTO</span>
                             
                         </button>
                     </div>
@@ -51,6 +52,6 @@
         </form>
     </div>
 
-    <script src="script.js"></script>
+    <script src="static/javascript/script.js"></script>
 </body>
 </html>

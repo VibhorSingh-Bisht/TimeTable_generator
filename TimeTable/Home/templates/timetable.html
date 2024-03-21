@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="navbar">
+    <a href="#home">Home</a>
+    
+    <div class="dropdown">
+      <button class="dropbtn">Dropdown 
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a href="#">Link 1</a>
+        <a href="#">Link 2</a>
+        <a href="#">Link 3</a>
+      </div>
+    </div> 
+    <a href="#home">Logout</a>
+  </div>
+      <header>
+      <h1>University Name</h1>
+      <h2>Department Name</h2>
+      <h3>TIME TABLE</h3>
+  </header>
+  <table id="myTable" border="1">
+      <tr>
+          <th>Day/Time</th>
+          <th>8:50 AM - 9:40 AM</th>
+          <th>9:40 AM - 10:30 AM</th>
+          <th>10:30 AM - 10:40 AM</th>
+          <th>10:40 AM - 11:30 AM</th>
+          <th>11:30 AM - 12:20 AM</th>
+          <th>12:20 AM - 1:10 AM</th>
+          <th>1:10 PM - 2:00 PM</th>
+          <th>2:00 PM - 2:50 PM</th>
+          <th>2:50 PM - 3:40 PM</th>
+      </tr>
+      <!-- Add more rows for each day and fill in the class timings -->
+      <tr>
+          <td>monday</td>
+          <td onclick="openModule('monday', '8:00 AM - 9:00 AM')">Class 1</td>
+          <td onclick="openModule('monday', '9:00 AM - 10:00 AM')">Class 2</td>
+          <td rowspan="6" bgcolor="" height="5" >break</td>
+          <td onclick="openModule('monday', '10:00 AM - 11:00 AM')">Class 3</td>
+          <td onclick="openModule('monday', '11:00 AM - 12:00 PM')">Class 4</td>
+          <td onclick="openModule('monday', '12:00 PM - 1:00 PM')">Class 5</td>
+          <td onclick="openModule('monday', '1:00 PM - 2:00 PM')">Class 6</td>
+          <td rowspan="6" bgcolor="" height="5" >recess</td>
+          <td onclick="openModule('tuesday', '1:00 PM - 2:00 PM')">Class 6</td>
+          
+          
+      </tr>
+      <tr>
+          <td>tuesday</td>
+          <td onclick="openModule('tuesday', '8:00 AM - 9:00 AM')">Class 1</td>
+          <td onclick="openModule('tuesday', '9:00 AM - 10:00 AM')">Class 2</td>
+          <td onclick="openModule('tuesday', '10:00 AM - 11:00 AM')">Class 3</td>
+          <td onclick="openModule('tuesday', '11:00 AM - 12:00 PM')">Class 4</td>
+          <td onclick="openModule('tuesday', '12:00 PM - 1:00 PM')">Class 5</td>
+          <td onclick="openModule('tuesday', '1:00 PM - 2:00 PM')">Class 6</td>
+          
+          <td onclick="openModule('tuesday', '1:00 PM - 2:00 PM')">Class 6</td>
+         
+          
+      </tr>
+      <tr>
+          <td>wednesday</td>
+          <td onclick="openModule('wednesday', '8:00 AM - 9:00 AM')">Class 1</td>
+          <td onclick="openModule('wednesday', '9:00 AM - 10:00 AM')">Class 2</td>
+          <td onclick="openModule('wednesday', '10:00 AM - 11:00 AM')">Class 3</td>
+          <td onclick="openModule('wednesday', '11:00 AM - 12:00 PM')">Class 4</td>
+          <td onclick="openModule('wednesday', '12:00 PM - 1:00 PM')">Class 5</td>
+          <td onclick="openModule('wednesday', '1:00 PM - 2:00 PM')">Class 6</td>
+          <td onclick="openModule('tuesday', '1:00 PM - 2:00 PM')">Class 6</td>
+          
+      </tr>
+      <tr>
+          <td>thursday</td>
+          <td onclick="openModule('thursday', '8:00 AM - 9:00 AM')">Class 1</td>
+          <td onclick="openModule('thursday', '9:00 AM - 10:00 AM')">Class 2</td>
+          <td onclick="openModule('thursday', '10:00 AM - 11:00 AM')">Class 3</td>
+          <td onclick="openModule('thursday', '11:00 AM - 12:00 PM')">Class 4</td>
+          <td onclick="openModule('thursday', '12:00 PM - 1:00 PM')">Class 5</td>
+          <td onclick="openModule('thursday', '1:00 PM - 2:00 PM')">Class 6</td>
+          <td onclick="openModule('tuesday', '1:00 PM - 2:00 PM')">Class 6</td>
+          
+      </tr>
+      <tr>
+          <td>friday</td>
+          <td onclick="openModule('friday', '8:00 AM - 9:00 AM')">Class 1</td>
+          <td onclick="openModule('friday', '9:00 AM - 10:00 AM')">Class 2</td>
+          <td onclick="openModule('friday', '10:00 AM - 11:00 AM')">Class 3</td>
+          <td onclick="openModule('friday', '11:00 AM - 12:00 PM')">Class 4</td>
+          <td onclick="openModule('friday', '12:00 PM - 1:00 PM')">Class 5</td>
+          <td onclick="openModule('friday', '1:00 PM - 2:00 PM')">Class 6</td>
+          <td onclick="openModule('tuesday', '1:00 PM - 2:00 PM')">Class 6</td>
+          
+      </tr>
+      <tr>
+          <td>saturday</td>
+          <td onclick="openModule('saturday', '8:00 AM - 9:00 AM')">Class 1</td>
+          <td onclick="openModule('saturday', '9:00 AM - 10:00 AM')">Class 2</td>
+          <td onclick="openModule('saturday', '10:00 AM - 11:00 AM')">Class 3</td>
+          <td onclick="openModule('saturday', '11:00 AM - 12:00 PM')">Class 4</td>
+          <td onclick="openModule('saturday', '12:00 PM - 1:00 PM')">Class 5</td>
+          <td onclick="openModule('saturday', '1:00 PM - 2:00 PM')">Class 6</td>
+          <td onclick="openModule('tuesday', '1:00 PM - 2:00 PM')">Class 6</td>
+          
+      </tr>
+      
+  
+      <table id="myTable">
+          <!-- Your table content here -->
+      </table>
+  
+      <!-- Module to display when a cell is clicked -->
+      <div id="module">
+          <h3 id="moduleName"></h3>
+          <p id="moduleTime"></p>
+          <!-- Add more content to your module as needed -->
+          <button onclick="closeModule()">Close</button>
+      </div>
+  
+      <script>
+          // Your existing JavaScript code here
+      </script>
+</body>
+</html>

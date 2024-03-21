@@ -16,7 +16,7 @@
         <header>Timing</header>
 
         <form action="#" method='post'>
-            { %csrf_token% }
+            {% csrf_token %}
             <div class="form first">
                 <div class="details personal">
                     <span class="title">Details</span>
@@ -38,11 +38,11 @@
                                 <span class="btnText">View Edit Timing</span>
                             </div>
 
-                            <button class="sumbit">
+                            <button class="submit">
                                 <span class="btnText">Add Timing</span>
 
                             </button>
-                            <button class="sumbit">
+                            <button class="submit">
                                 <a href="{% url 'add_department' %}">
                                     <span class="btnText">Next</span>
                                   </a>

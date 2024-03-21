@@ -116,4 +116,4 @@ def add_department(request):
 
 @login_required(login_url='login_page')
 def time_table(request):
-    pass
+    return render(request,'time_table.html')

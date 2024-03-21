@@ -3,10 +3,14 @@ from django.contrib.auth.models import User
 
 
 # Create your models here.
-class login_register(models.Model):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null = True, blank=True)
-    email_l = models.EmailField()
-    password_l = models.CharField(max_length = 20)
+
+class Register(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    teacher_name = models.CharField(max_length=30)
+    teacher_desig = models.CharField(max_length=20)
+    
+    def __str__(self):
+        return self.teacher_name
 
 
 class teacher_data(models.Model):

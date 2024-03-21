@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
     <link rel="stylesheet" href="static/css/style_signup.css">
 </head>
+
 <body>
     <div class="container">
         <div class="registration form">
@@ -13,16 +15,25 @@
             <form method="post">
                 {% csrf_token %}
                 <!-- Signup form fields -->
+                {% if messages %}
+                <div class="alert alert-primary" role="alert">
+                    {% for message in messages %}
+                    {{ message }}
+                    {% endfor %}
+                </div>
+                <ul class="messages">
+                    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                </ul>
+                {% endif %}
+
                 <label>Teacher Name</label>
                 <input type="text" placeholder="Enter your Name" name="Teacher_name_s">
                 <label>Teacher Designation</label>
-                <input type="text" placeholder="Enter your designation" name="Teacher_desig_s">
+                <input type="text" placeholder="Enter your Designation" name="Teacher_desig_s">
                 <label>Email</label>
-                <input type="text" placeholder="Enter your Email" name="email_s">
+                <input type="email" placeholder="Enter your Email" name="email_s">
                 <label>Password</label>
-                <input type="password" placeholder="Create a password" name="name_s">
-                <label>Confirm Password</label>
-                <input type="password" placeholder="Confirm your password" name="cnf_pswd">
+                <input type="password" placeholder="Create a password" name="password_s">
                 <input type="submit" class="button" value="Signup">
             </form>
             <div class="signup">
@@ -33,4 +44,5 @@
         </div>
     </div>
 </body>
+
 </html>

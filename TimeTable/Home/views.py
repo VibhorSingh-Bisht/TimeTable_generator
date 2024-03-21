@@ -1,17 +1,56 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import *
 from django.contrib.auth.decorators import login_required
+#from django.contrib.auth.models import User  
+from django.contrib import messages
+from django.contrib.auth.models import User
+from .models import Register
+from django.contrib.auth import get_user_model
 
 # Create your views here.
 
 def home(request):
     return render(request, "index.html")#, context={'peoples':peoples})
 
-def login_page(request):
+def login(request):
     return render(request,'login.html')
 
+
+
 def signup(request):
-    return render(request,'signup.html`')
+    if request.method == 'POST':
+        teacher_name = request.POST.get('Teacher_name_s')
+        teacher_desig = request.POST.get('Teacher_desig_s')
+        email = request.POST.get('email_s')
+        password = request.POST.get('password_s')
+        
+        # Check if the email already exists
+        if User.objects.filter(email=email).exists():
+            messages.error(request, 'Email already exists')
+            return redirect('login')
+        
+        # Create a new user
+        user = User.objects.create_user(username=email, email=email, password=password)
+        
+        # Save email and password to the User model
+        user.email = email
+        user.set_password(password)
+        user.save()
+        
+        # Create a register instance and save additional fields
+        register = Register.objects.create(
+            user=user,
+            teacher_name=teacher_name,
+            teacher_desig=teacher_desig
+        )
+        
+        messages.info(request, "User created successfully")
+        return redirect('login')
+
+    return render(request, 'signup.html')
+
+def dashboard(request):
+    return render(request,'dashboard.html')
 
 def add_course(request):
     if request.method == 'POST':
@@ -49,13 +88,8 @@ def index(request):
     pass
 
 
-
-def dashboard(request):
-    return render(request,'dashboard.html')
-
-
 def add_timing(request):
-    if request.method == 'post':
+    if request.method == 'POST':
         data = request.POST
 
 

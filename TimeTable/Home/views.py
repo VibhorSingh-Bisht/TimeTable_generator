@@ -68,11 +68,11 @@ def signup(request):
 
     return render(request, 'signup.html')
 
-@login_required(login_url='login')
+@login_required(login_url='login_page')
 def dashboard(request):
     return render(request,'dashboard.html')
 
-@login_required(login_url='login')
+@login_required(login_url='login_page')
 def add_course(request):
     if request.method == 'POST':
         data = request.POST
@@ -87,11 +87,11 @@ def add_course(request):
         )
     return render(request,"Add Course.html")
 
-@login_required(login_url='login')
+@login_required(login_url='login_page')
 def add_dept(request):
     pass
 
-@login_required(login_url='login')
+@login_required(login_url='login_page')
 def add_teacher(request):
     if request.method == 'POST':
         data = request.POST
@@ -107,15 +107,15 @@ def add_teacher(request):
 
     return render(request, "Add Teacher.html")
 
-@login_required(login_url='login')
+@login_required(login_url='login_page')
 def add_timing(request):
     if request.method == 'POST':
         data = request.POST
 
-@login_required(login_url='login')
+@login_required(login_url='login_page')
 def add_department(request):
     pass
 
-@login_required(login_url='login')
+@login_required(login_url='login_page')
 def time_table(request):
     pass

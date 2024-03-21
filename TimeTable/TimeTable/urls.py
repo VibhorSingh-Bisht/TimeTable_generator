@@ -23,7 +23,6 @@ urlpatterns = [
     path('',home,name='home'),
     path('add_teacher',add_teacher,name='add_teacher'),
     path('add_timing',add_timing,name='add_timing'),
-    path('add_course',index,name='add_course'),
     path('time_table',time_table,name='time_table'),
     path('login_page',login_page,name='login_page'),
     path('logout',logout,name='logout_page'),

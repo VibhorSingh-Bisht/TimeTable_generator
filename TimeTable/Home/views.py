@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import *
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -41,18 +42,24 @@ def add_teacher(request):
 def index(request):
     pass
 
+
+
 def dashboard(request):
-    pass
+    return render(request,'dashboard.html')
+
 
 def add_timing(request):
     if request.method == 'post':
         data = request.POST
 
-def login(request):
+
+def login_page(request):
     return render(request,'login.html')
+
 
 def add_department(request):
     pass
+
 
 def time_table(request):
     pass

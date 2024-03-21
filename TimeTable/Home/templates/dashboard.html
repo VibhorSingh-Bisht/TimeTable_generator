@@ -11,33 +11,33 @@
   <body>
     <div class="container">
       <div class="radio-tile-group">
-
         <div class="input-container">
-          <input id="walk" type="radio" name="radio">
+          <a href="{% url 'add_teacher' %}" class="radio-link">
+          <input id="Faculty" type="radio" name="radio">
           <div class="radio-tile">
             <ion-icon name="person-add-outline"></ion-icon>
-            <label for="walk">Faculty</label>
+            <label for="Faculty">Faculty</label>
           </div>
+        </a>
         </div>
 
         <div class="input-container">
-          <input id="bike" type="radio" name="radio">
+          <input id="Student" type="radio" name="radio">
           <div class="radio-tile">
             <ion-icon name="school-outline"></ion-icon>
-            <label for="bike">Student</label>
+            <label for="Student">Student</label>
           </div>
         </div>
 
         <div class="input-container">
-          <input id="car" type="radio" name="radio">
+          <a href="{% url 'add_teacher' %}" class="radio-link">
+          <input id="Admin" type="radio" name="radio">
           <div class="radio-tile">
             <ion-icon name="person-outline"></ion-icon>
-            <label for="car">Admin</label>
+            <label for="Admin">Admin</label>
           </div>
+        </a>
         </div>
-
-     
-
       </div>
     </div>
 

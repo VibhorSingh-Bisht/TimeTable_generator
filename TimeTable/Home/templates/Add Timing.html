@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
+
     <link rel="stylesheet" type='text/css' href="static/css/style.css">
-  
-    <title>Timing</title> 
+
+    <title>Timing</title>
 </head>
+
 <body>
     <div class="container">
         <header>Timing</header>
 
-        <form action="#" method = 'post'>
+        <form action="#" method='post'>
             { %csrf_token% }
             <div class="form first">
                 <div class="details personal">
@@ -26,30 +28,32 @@
                         </div>
 
                         <div class="input-field">
-                            <label>  Name subject</label>
+                            <label> Name subject</label>
                             <input type="text" placeholder="Enter the subject" required name="">
                         </div>
 
-                    <div class="buttons">
-                        <div class="backBtn">
-                          
-                            <span class="btnText">View Edit Timing</span>
+                        <div class="buttons">
+                            <div class="backBtn">
+
+                                <span class="btnText">View Edit Timing</span>
+                            </div>
+
+                            <button class="sumbit">
+                                <span class="btnText">Add Timing</span>
+
+                            </button>
+                            <button class="sumbit">
+                                <a href="{% url 'add_department' %}">
+                                    <span class="btnText">Next</span>
+                                  </a>
+                            </button>
                         </div>
-                        
-                        <button class="sumbit">
-                            <span class="btnText">Add Timing</span>
-                            
-                        </button>
-						<button class="sumbit">
-                            <span class="btnText">Next</span>
-                            
-                        </button>
                     </div>
-                </div> 
-            </div>
+                </div>
         </form>
     </div>
 
     <script src="static/javascript/script.js"></script>
 </body>
+
 </html>

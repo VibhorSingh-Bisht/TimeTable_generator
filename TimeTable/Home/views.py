@@ -87,9 +87,6 @@ def add_course(request):
         )
     return render(request,"Add Course.html")
 
-@login_required(login_url='login_page')
-def add_dept(request):
-    pass
 
 @login_required(login_url='login_page')
 def add_teacher(request):
@@ -114,7 +111,8 @@ def add_timing(request):
 
 @login_required(login_url='login_page')
 def add_department(request):
-    pass
+    return render(request,'Add Department.html')
+
 
 @login_required(login_url='login_page')
 def time_table(request):

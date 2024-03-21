@@ -7,19 +7,15 @@
 </head>
 <body>
     
-    <table>
-        <tr>
-          <th>S.no</th>
-          <th>Name</th>
-          <th>Age</th>
-        </tr>
-        {% for people in peoples %}
-        <tr>
-          <td>{{forloop.counter}}</td>
-          <td>{{people.name}}</td>
-          <td>{{people.age}}</td>
-        </tr>
-        {% endfor %}
-      </table>
+  <nav class="navbar bg-body-tertiary shadow-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand">Navbar</a>
+      <form class="d-flex" role="search">
+        <button class="btn btn-success" type="submit">Logout</button>
+      </form>
+    </div>
+  </nav>
+  {% block start %}
+  {% endblock %}
 </body>
 </html>

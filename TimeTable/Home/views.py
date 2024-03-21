@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import Register
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import get_user_model
 
 # Create your views here.
@@ -12,22 +13,40 @@ from django.contrib.auth import get_user_model
 def home(request):
     return render(request, "index.html")#, context={'peoples':peoples})
 
-def login(request):
+def login_page(request):
+    if request.method == 'POST':
+        email = request.POST.get('email_s')
+        password = request.POST.get('password_s')
+
+        if not User.objects.filter(email= email).exists():
+            messages.error(request,'Invalid password')
+            return redirect('signup')
+        
+        user = authenticate(username = email,password = password)
+        if user is None:
+            messages.error(request,"Invalid Password")
+            return redirect('login_page')
+        else:
+            login(request,user)
+            return redirect('dashboard')
+
     return render(request,'login.html')
 
-
+def logout_page(request):
+    logout(request)
+    return redirect('login_page')
 
 def signup(request):
     if request.method == 'POST':
-        teacher_name = request.POST.get('Teacher_name_s')
-        teacher_desig = request.POST.get('Teacher_desig_s')
-        email = request.POST.get('email_s')
-        password = request.POST.get('password_s')
+        teacher_name = request.POST.get('teacher_name')
+        teacher_desig = request.POST.get('teacher_desig')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
         
         # Check if the email already exists
         if User.objects.filter(email=email).exists():
             messages.error(request, 'Email already exists')
-            return redirect('login')
+            return redirect('login_page')
         
         # Create a new user
         user = User.objects.create_user(username=email, email=email, password=password)
@@ -45,13 +64,15 @@ def signup(request):
         )
         
         messages.info(request, "User created successfully")
-        return redirect('login')
+        return redirect('login_page')
 
     return render(request, 'signup.html')
 
+@login_required
 def dashboard(request):
     return render(request,'dashboard.html')
 
+@login_required
 def add_course(request):
     if request.method == 'POST':
         data = request.POST
@@ -66,9 +87,11 @@ def add_course(request):
         )
     return render(request,"Add Course.html")
 
+@login_required
 def add_dept(request):
     pass
 
+@login_required
 def add_teacher(request):
     if request.method == 'POST':
         data = request.POST
@@ -84,18 +107,15 @@ def add_teacher(request):
 
     return render(request, "Add Teacher.html")
 
-def index(request):
-    pass
-
-
+@login_required
 def add_timing(request):
     if request.method == 'POST':
         data = request.POST
 
-
+@login_required
 def add_department(request):
     pass
 
-
+@login_required
 def time_table(request):
     pass

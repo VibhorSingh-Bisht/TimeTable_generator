@@ -12,11 +12,22 @@
             <header>Login</header>
             <form method="post">
                 {% csrf_token %}
+                <!-- Signup form fields -->
+                {% if messages %}
+                <div class="alert alert-primary" role="alert">
+                    {% for message in messages %}
+                    {{ message }}
+                    {% endfor %}
+                </div>
+                <ul class="messages">
+                    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                </ul>
+                {% endif %}
                 <!-- Login form fields -->
                 <label>Email</label>
-                <input type="text" placeholder="Enter your Email" name="email_log">
+                <input type="text" placeholder="Enter your Email" name="email">
                 <label>Password</label>
-                <input type="password" placeholder="Enter your password" name="password_log">
+                <input type="password" placeholder="Enter your password" name="password">
                 <a href="#">Forgot password?</a>
                 <input type="submit" class="button" value="Login">
             </form>

@@ -1,17 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View/Edit</title>
+  <link rel="stylesheet" href="static/css/style.css">
 </head>
 <body>
-    <h1>project</h1>
-    <p>hello word</p>
-    <h2>hghff</h2>
-    <h3>xkj</h3>
+  <div class="navbar">
+    <a href="#home">View</a>
+    <a href="#home">Edit</a>
+    <a href="#home">Teacher</a>
+  </div>
+  <header>
+    <h1>Teachers</h1>
+    <h2>Time Table </h2>
+
+  </header>
+  <table id="myTable" border="1">
+    <tr>
+      <th>Name </th>
+      <th>Subject</th>
+      <th>Designation</th>
+
+    </tr>
+    <!-- Add more rows for each day and fill in the class timings -->
+    <tr>
+      <td< /td>
+        <td onclick="openModule('monday', '8:00 AM - 9:00 AM')"></td>
+        <td onclick="openModule('monday', '9:00 AM - 10:00 AM')"></td>
+
+        <td onclick="openModule('monday', '10:00 AM - 11:00 AM')"></td>
+    </tr>
+    <tr>
+      <td< /td>
+        <td onclick="openModule('monday', '8:00 AM - 9:00 AM')"></td>
+        <td onclick="openModule('monday', '9:00 AM - 10:00 AM')"></td>
+
+        <td onclick="openModule('monday', '10:00 AM - 11:00 AM')"></td>
+    </tr>
+    <tr>
+      <td< /td>
+        <td onclick="openModule('monday', '8:00 AM - 9:00 AM')"></td>
+        <td onclick="openModule('monday', '9:00 AM - 10:00 AM')"></td>
+
+        <td onclick="openModule('monday', '10:00 AM - 11:00 AM')"></td>
+    </tr>
+
+    <table id="myTable">
+      <!-- Your table content here -->
+    </table>
+
+    <!-- Module to display when a cell is clicked -->
+    <div id="module">
+      <h3 id="moduleName"></h3>
+      <p id="moduleTime"></p>
+      <!-- Add more content to your module as needed -->
+      <button onclick="closeModule()">Close</button>
+    </div>
+
+    <script>
+      // Your existing JavaScript code here
+    </script>
+    <button type="button" onclick="alert('Hello world!')">Save </button>
+    <button type="button" onclick="alert('Hello world!')">Edit</button>
 </body>
 </html>
-
-<!-- hello -->
-<!-- jumangi -->

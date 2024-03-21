@@ -15,8 +15,8 @@ def home(request):
 
 def login_page(request):
     if request.method == 'POST':
-        email = request.POST.get('email_s')
-        password = request.POST.get('password_s')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
 
         if not User.objects.filter(email= email).exists():
             messages.error(request,'Invalid password')

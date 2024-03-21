@@ -26,6 +26,6 @@ urlpatterns = [
     path('add_course',index,name='add_course'),
     path('time_table',time_table,name='time_table'),
     path('login',login_page,name='login_page'),
-    path('dashboard',dashboard,name='dashboard')
-
+    path('signup',signup,name='signup'),
+    path('dashboard',dashboard,name='dashboard'),
 ]

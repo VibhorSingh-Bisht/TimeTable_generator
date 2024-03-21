@@ -7,6 +7,12 @@ from django.contrib.auth.decorators import login_required
 def home(request):
     return render(request, "index.html")#, context={'peoples':peoples})
 
+def login_page(request):
+    return render(request,'login.html')
+
+def signup(request):
+    return render(request,'signup.html`')
+
 def add_course(request):
     if request.method == 'POST':
         data = request.POST
@@ -51,10 +57,6 @@ def dashboard(request):
 def add_timing(request):
     if request.method == 'post':
         data = request.POST
-
-
-def login_page(request):
-    return render(request,'login.html')
 
 
 def add_department(request):

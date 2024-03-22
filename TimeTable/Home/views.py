@@ -78,12 +78,12 @@ def add_course(request):
         data = request.POST
         course_name = data.get('course_name')
         course_c = data.get('course_c')
-        course_subs = data.get('subjects')
+        course_subs = data.get('course_subs')
         print(course_name, course_c,course_subs)
-        teacher_data.objects.create(
+        course_data.objects.create(
             user = request.user,
             course_name  = course_name,
-            course_d = course_c,
+            course_c = course_c,
             course_subs = course_subs
         )
     return render(request,"Add Course.html")
@@ -96,7 +96,6 @@ def add_teacher(request):
         teacher_name = data.get('teacher_name')
         teacher_desig = data.get('teacher_desig')
         subjects = data.get('subjects')
-        print(teacher_name, teacher_desig,subjects)
         teacher_data.objects.create(
             user = request.user,
             teacher_name  = teacher_name,

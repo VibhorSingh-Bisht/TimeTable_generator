@@ -1,4 +1,18 @@
 import random
+import mysql.connector as sql
+
+
+def Database():
+    mydb = sql.connect(
+    host="localhost",
+    user="new_user",
+    password="password",database = "timetable"
+    )
+
+    cur = mydb.cursor()
+
+    cur.execute('select * from snake')
+    print(cur.fetchall())
 
 
 def main():

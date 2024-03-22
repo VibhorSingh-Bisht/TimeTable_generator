@@ -107,16 +107,44 @@ def add_teacher(request):
 
 @login_required(login_url='login_page')
 def add_timing(request):
-    return render(request,'Add Timing.html')
     if request.method == 'POST':
         data = request.POST
+        timing = data.get('timing')
+        timing_class = data.get('timing_class')
+        WorkingDays_data.objects.create(
+            user = request.user,
+            timing  = timing,
+            timing_class = timing_class
+        )
+    return render(request,'Add Timing.html')
 
 @login_required(login_url='login_page')
 def add_infrastructure(request):
+    if request.method == 'POST':
+        data = request.POST
+        infra_name = data.get('infra_name')
+        infra = data.get('infra')
+        infra_value = data.get('infra_value')
+
+        WorkingDays_data.objects.create(
+            user = request.user,
+            infra_name = infra_name,
+            infra = infra,
+            infra_value = infra_value
+        )
     return render(request,'Add Infrastructure.html')
 
 @login_required(login_url='login_page')
 def add_working_days(request):
+    if request.method == 'POST':
+        data = request.POST
+        Total = data.get('Total')
+        Data = data.get('Data')
+        WorkingDays_data.objects.create(
+            user = request.user,
+            Total  = Total,
+            Data = Data
+        )
     return render(request,'Add Working_days.html')
 
 

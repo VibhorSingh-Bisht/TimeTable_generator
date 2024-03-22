@@ -106,12 +106,17 @@ def add_teacher(request):
 
 @login_required(login_url='login_page')
 def add_timing(request):
+    return render(request,'Add Timing.html')
     if request.method == 'POST':
         data = request.POST
 
 @login_required(login_url='login_page')
-def add_department(request):
-    return render(request,'Add Department.html')
+def add_infrastructure(request):
+    return render(request,'Add Infrastructure.html')
+
+@login_required(login_url='login_page')
+def add_working_days(request):
+    return render(request,'Add Working_days.html')
 
 
 @login_required(login_url='login_page')

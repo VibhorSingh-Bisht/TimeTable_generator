@@ -137,10 +137,8 @@
                 <span class="btnText">Add Course</span>
 
               </button>
-              <button class="submit">
-                <a href="{% url 'add_timing' %}">
-                  <span class="btnText">Next</span>
-                </a>
+              <button class="submit" onclick="redirectTo('add_timing')">
+                <span class="btnText">Next</span>
               </button>
             </div>
           </div>
@@ -149,6 +147,7 @@
   </div>
 
   <script src='static/javasript/script.js'></script>
+  <script src="static/javascript/redirect.js"></script>
 </body>
 
 </html>

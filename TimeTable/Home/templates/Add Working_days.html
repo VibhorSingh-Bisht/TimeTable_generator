@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" type='text/css' href="static/css/style.css">
 
-    <title>Timing</title>
+    <title>Working days</title>
 </head>
 
 <body>
@@ -106,7 +106,7 @@
     </nav>
 
     <div class="container">
-        <header>Timing</header>
+        <header>Working days and hours</header>
 
         <form action="#" method='post'>
             {% csrf_token %}
@@ -116,12 +116,12 @@
 
                     <div class="fields">
                         <div class="input-field">
-                            <label> Enter Timing</label>
-                            <input type="number" placeholder="Enter your Timing" required name="">
+                            <label> Total classes a day</label>
+                            <input type="number" placeholder="Enter classes" required name="">
                         </div>
 
                         <div class="input-field">
-                            <label> Respective Field(Class/Labs)</label>
+                            <label> Respective time  </label>
                             <input type="text" placeholder="Enter the Field" required name="">
                         </div>
 
@@ -135,9 +135,9 @@
                                 <span class="btnText">Add Timing</span>
 
                             </button>
-                            <button class="submit" onclick="redirectTo('add_infrastructure')">
-                              <span class="btnText">Next</span>
-                            </button>
+                            <button class="submit" onclick="redirectTo('time_table')">
+                                <span class="btnText">Next</span>
+                              </button>
                         </div>
                     </div>
                 </div>

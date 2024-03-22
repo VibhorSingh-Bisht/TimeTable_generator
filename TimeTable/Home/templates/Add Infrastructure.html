@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+   
     <link rel="stylesheet" type='text/css' href="static/css/style.css">
-
-    <title>Timing</title>
+  
+    <title>Add Department</title> 
 </head>
-
 <body>
+
     <nav class="sidebar locked">
         <div class="logo_items flex">
           <span class="nav_image"></span>
@@ -106,9 +105,9 @@
     </nav>
 
     <div class="container">
-        <header>Timing</header>
+        <header>Add Department</header>
 
-        <form action="#" method='post'>
+        <form action="#" method = 'post'>
             {% csrf_token %}
             <div class="form first">
                 <div class="details personal">
@@ -116,36 +115,39 @@
 
                     <div class="fields">
                         <div class="input-field">
-                            <label> Enter Timing</label>
-                            <input type="number" placeholder="Enter your Timing" required name="">
+                            <label>Department Name</label>
+                            <input type="text" placeholder="Enter your Dept. name" required>
                         </div>
-
-                        <div class="input-field">
-                            <label> Respective Field(Class/Labs)</label>
-                            <input type="text" placeholder="Enter the Field" required name="">
+						<div class="input-field">
+                            <label>Department Coordinator</label>
+                            <input type="text" placeholder="Enter your Coord. name" required>
                         </div>
-
-                        <div class="buttons">
-                            <div class="backBtn">
-
-                                <span class="btnText">View Edit Timing</span>
-                            </div>
-
-                            <button class="submit">
-                                <span class="btnText">Add Timing</span>
-
-                            </button>
-                            <button class="submit" onclick="redirectTo('add_infrastructure')">
-                              <span class="btnText">Next</span>
-                            </button>
+						<div class="input-field">
+                            <label>Department Building</label>
+                            <input type="text" placeholder="Enter your Department" required>
                         </div>
+                   
+
+                    <div class="buttons">
+                        <div class="backBtn">
+                          
+                            <span class="btnText">View Edit Course</span>
+                        </div>
+                        
+                        <button class="submit">
+                            <span class="btnText">Add Course</span>
+                            
+                        </button>
+                        <button class="submit" onclick="redirectTo('add_working')">
+                          <span class="btnText">Next</span>
+                        </button>
                     </div>
-                </div>
+                </div> 
+            </div>
         </form>
     </div>
 
-    <script src="static/javascript/script.js"></script>
+    <script src="static/javasript/script.js"></script>
     <script src="static/javascript/redirect.js"></script>
 </body>
-
 </html>

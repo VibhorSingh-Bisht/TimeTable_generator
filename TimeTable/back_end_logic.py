@@ -1,5 +1,6 @@
 import random
 
+
 def main():
     time_table = Data()
     print("Time Table:")

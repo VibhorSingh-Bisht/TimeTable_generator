@@ -35,7 +35,7 @@ class timing_data(models.Model):
 class infrastructure_data(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     infra_name = models.CharField(max_length=25)
-    infra = models.CharField(max_length=25)
+    infra = models.CharField(max_length=150)
     infra_value = models.CharField(max_length=25)
 
 class WorkingDays_data(models.Model):

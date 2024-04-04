@@ -62,7 +62,11 @@ def arrangement(sec_sub, room_avl, times,days,teach_subs,sudo_tt):
         for k in range(days['each_day']):
             for l in list_sec_sub:
                 try:
-                    if 'Lab' in sudo_tt[l][index][i][f'Slot{k-1}']:
+                    if 'Lab' in sudo_tt[l][index][i][f'Slot{k-1}'] and k == 1:
+                        continue
+                    elif ('Lab' in sudo_tt[l][index][i][f'Slot{k-1}']) and ('Lab' in sudo_tt[l][index][i][f'Slot{k-2}']):
+                        pass
+                    elif 'Lab' in sudo_tt[l][index][i][f'Slot{k-1}']:
                         continue
                 except:
                     pass
@@ -74,29 +78,26 @@ def arrangement(sec_sub, room_avl, times,days,teach_subs,sudo_tt):
                             if ran in subject:
                                 is_room_avl.remove(lab)
                                 if sudo_tt[l][index][i][f'Slot{k}'] == None and sudo_tt[l][index][i][f'Slot{k+1}'] == None:
-                                    print('hi')
                                     sudo_tt[l][index][i][f'Slot{k}'] = ran
                                     sudo_tt[l][index][i][f'Slot{k+1}'] = ran
                                 else:
-                                    sudo_tt = placement(l,index,i,k,sudo_tt,sec_sub,is_room_avl,room_avl,is_teach_avl,teach_subs)
-                        else:
-                            sudo_tt = placement(l,index,i,k,sudo_tt,sec_sub,is_room_avl,room_avl,is_teach_avl,teach_subs)
+                                    sudo_tt, is_room_avl, is_teach_avl = placement(l,index,i,k,sudo_tt,sec_sub,is_room_avl,room_avl,is_teach_avl,teach_subs)
+                        
                     elif is_teach_avl:
                         for teach, subject in teach_subs.items():
                             if ran in subject:
                                 is_teach_avl.remove(teach)
                                 sudo_tt[l][index][i][f'Slot{k}'] = ran
                                 break
-                        else:
-                            sudo_tt = placement(l,index,i,k,sudo_tt,sec_sub,is_room_avl,room_avl,is_teach_avl,teach_subs)
+        
                     else:
-                        sudo_tt = placement(l,index,i,k,sudo_tt,sec_sub,is_room_avl,room_avl,is_teach_avl,teach_subs)
+                        continue
                 except KeyError:
-                    sudo_tt = placement(l,index,i,k,sudo_tt,sec_sub,is_room_avl,room_avl,is_teach_avl,teach_subs)
+                    sudo_tt, is_room_avl, is_teach_avl = placement(l,index,i,k,sudo_tt,sec_sub,is_room_avl,room_avl,is_teach_avl,teach_subs)
                     
-            is_room_avl = set(room_avl)
+            is_room_avl = set(room_avl['Extra'])
             is_teach_avl = set(teach_subs)
-    
+    print(is_room_avl, is_teach_avl)
     return sudo_tt
                         
 
@@ -111,25 +112,21 @@ def placement(l,index,i,k,sudo_tt,sec_sub,is_room_avl,room_avl,is_teach_avl,teac
                         sudo_tt[l][index][i][f'Slot{k}'] = ran
                         sudo_tt[l][index][i][f'Slot{k+1}'] = ran
                     else:
-                        sudo_tt = placement(l,index,i,k,sudo_tt,sec_sub,is_room_avl,room_avl,is_teach_avl,teach_subs)
-            else:
-                placement(l,index,i,k,sudo_tt,sec_sub,is_room_avl,room_avl,is_teach_avl,teach_subs)
+                        sudo_tt, is_room_avl, is_teach_avl = placement(l,index,i,k,sudo_tt,sec_sub,is_room_avl,room_avl,is_teach_avl,teach_subs)
+
         elif is_teach_avl:
             for teach, subject in teach_subs.items():
                 if ran in subject:
                     is_teach_avl.remove(teach)
                     sudo_tt[l][index][i][f'Slot{k}'] = ran
                     break
-            else:
-                placement(l,index,i,k,sudo_tt,sec_sub,is_room_avl,room_avl,is_teach_avl,teach_subs)
-        else:
-            placement(l,index,i,k,sudo_tt,sec_sub,is_room_avl,room_avl,is_teach_avl,teach_subs)
+
     except KeyError:
-        placement(l,index,i,k,sudo_tt,sec_sub,is_room_avl,room_avl,is_teach_avl,teach_subs)
+        sudo_tt, is_room_avl, is_teach_avl = placement(l,index,i,k,sudo_tt,sec_sub,is_room_avl,room_avl,is_teach_avl,teach_subs)
             
-    is_room_avl = set(room_avl)
+    is_room_avl = set(room_avl['Extra'])
     is_teach_avl = set(teach_subs)
-    return sudo_tt
+    return sudo_tt, is_room_avl, is_teach_avl
 
 if __name__ == '__main__':
     main()

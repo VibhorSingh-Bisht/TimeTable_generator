@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from .models import Register
 from django.contrib.auth import authenticate, login, logout
 from back_end_logic import *
+from time_gen import main
 
 # Create your views here.
 
@@ -111,7 +112,7 @@ def add_timing(request):
         data = request.POST
         timing = data.get('timing')
         timing_class = data.get('timing_class')
-        WorkingDays_data.objects.create(
+        timing_data.objects.create(
             user = request.user,
             timing  = timing,
             timing_class = timing_class
@@ -126,7 +127,7 @@ def add_infrastructure(request):
         infra = data.get('infra')
         infra_value = data.get('infra_value')
 
-        WorkingDays_data.objects.create(
+        infrastructure_data.objects.create(
             user = request.user,
             infra_name = infra_name,
             infra = infra,
@@ -150,5 +151,21 @@ def add_working_days(request):
 
 @login_required(login_url='login_page')
 def time_table(request):
-
-    return render(request,'time_table.html')
+    start_time = 8
+    start_min = 50
+    working_hours = 4
+    working_days = 5
+    time_for_lecture = 50
+    s_break = 10
+    period_range = range(working_hours + 1)
+    days = ['Monday','Tuesday','Wednesday','Thrusday','Friday','Saturday']
+    lst = main(working_hours,start_time,start_min,time_for_lecture,s_break)
+    info = {'list':lst,
+            'days':days,
+            'working_hours':working_hours,
+            'working_days':working_days,
+            'time_for_lecture':time_for_lecture,
+            'period_range': period_range
+            }
+    
+    return render(request,'time_table.html',context=info)

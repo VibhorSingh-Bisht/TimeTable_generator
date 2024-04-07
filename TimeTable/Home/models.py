@@ -28,15 +28,15 @@ class course_data(models.Model):
 
 class timing_data(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    timing = models.TimeField(max_length=25)
+    timing = models.CharField(max_length=15)
     timing_class = models.CharField(max_length=30)
 
 
 class infrastructure_data(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     infra_name = models.CharField(max_length=25)
-    infra = models.CharField(max_length=150)
-    infra_value = models.CharField(max_length=25)
+    infra = models.CharField(max_length=25)
+    infra_value = models.CharField(max_length=250)
 
 class WorkingDays_data(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

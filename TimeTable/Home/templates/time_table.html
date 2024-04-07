@@ -27,33 +27,35 @@
       <h2>Department Name</h2>
       <h3>TIME TABLE</h3>
   </header>
+  
+  {% for class_name, timetable_a in time_table_slot.items %}
   <table id="myTable" border="1">
-      <tr>
-          <th>Day/Time</th>
-          {% for time in list %}
-          <th> {{time}} </th>
-          {% endfor %}
-      </tr>
-   
-      {% for day in days %}
-      <tr>
-          <td>{{ day }}</td>
-          {% for period in period_range %}
-              {% if period == 2 %}
-                  <td bgcolor="lightgray">Break</td>
-              {% elif period == 6 %}
-                  <td bgcolor="lightblue">Recess</td>
-              {% else %}
-                  <td> Class{{forloop.counter}} </td>
-              {% endif %}
-          {% endfor %}
-      </tr>
+    <caption>{{ class_name }}</caption>
+    <tr>
+      <th>Day/Time</th>
+      {% for time in list %}
+      <th>{{ time }}</th>
       {% endfor %}
+    </tr>
   
-  
-      <table id="myTable">
-          <!-- Your table content here -->
-      </table>
+    {% for day, periods in timetable_a.items %}
+    <tr>
+      <td>{{ day }}</td>
+      {% for period in periods %}
+      {% if forloop.counter0 == 2 %}
+      <td bgcolor="lightgray">Break</td>
+      <td>{{period}}</td> {# Add an empty cell #}
+      {% elif forloop.counter0 == 6 %}
+      <td bgcolor="lightblue">Recess</td>
+      <td>{{period}}</td> {# Add an empty cell #}
+      {% else %}
+      <td>{{ period }}</td>
+      {% endif %}
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </table>
+  {% endfor %}
   
       <!-- Module to display when a cell is clicked -->
       <div id="module">

@@ -30,7 +30,7 @@
   
   {% for class_name, timetable_a in time_table_slot.items %}
   <table id="myTable" border="1">
-    <caption>{{ class_name }}</caption>
+    <caption class="bold-blue-caption">{{ class_name }}</caption>
     <tr>
       <th>Day/Time</th>
       {% for time in list %}

@@ -155,7 +155,7 @@ def time_table(request):
     start_min = 50
     working_hours = 4
     working_days = 5
-    time_table_slot,working_hours,working_days = back_end_logic.main()
+    time_table_slot,working_hours,working_days, time_table_teach, time_table_labs = back_end_logic.main()
     time_for_lecture = 50
     s_break = 10
     period_range = range(working_hours + 1)
@@ -168,6 +168,58 @@ def time_table(request):
             'time_for_lecture':time_for_lecture,
             'period_range': period_range,
             'time_table_slot':time_table_slot,
+            'time_table_teach':time_table_teach,
+            'time_table_labs':time_table_labs,
             }
     
     return render(request,'time_table.html',context=info)
+
+@login_required(login_url='login_page')
+def time_table_teach(request):
+    start_time = 8
+    start_min = 50
+    working_hours = 4
+    working_days = 5
+    time_table_slot,working_hours,working_days, time_table_teach, time_table_labs = back_end_logic.main()
+    time_for_lecture = 50
+    s_break = 10
+    period_range = range(working_hours + 1)
+    days = ['Monday','Tuesday','Wednesday','Thrusday','Friday','Saturday']
+    lst = time_gen.main(working_hours,start_time,start_min,time_for_lecture,s_break) 
+    info = {'list':lst,
+            'days':days,
+            'working_hours':working_hours,
+            'working_days':working_days,
+            'time_for_lecture':time_for_lecture,
+            'period_range': period_range,
+            'time_table_slot':time_table_slot,
+            'time_table_teach':time_table_teach,
+            'time_table_labs':time_table_labs,
+            }
+    
+    return render(request,'time_table_teach.html',context=info)
+
+@login_required(login_url='login_page')
+def time_table_lab(request):
+    start_time = 8
+    start_min = 50
+    working_hours = 4
+    working_days = 5
+    time_table_slot,working_hours,working_days, time_table_teach, time_table_labs = back_end_logic.main()
+    time_for_lecture = 50
+    s_break = 10
+    period_range = range(working_hours + 1)
+    days = ['Monday','Tuesday','Wednesday','Thrusday','Friday','Saturday']
+    lst = time_gen.main(working_hours,start_time,start_min,time_for_lecture,s_break) 
+    info = {'list':lst,
+            'days':days,
+            'working_hours':working_hours,
+            'working_days':working_days,
+            'time_for_lecture':time_for_lecture,
+            'period_range': period_range,
+            'time_table_slot':time_table_slot,
+            'time_table_teach':time_table_teach,
+            'time_table_labs':time_table_labs,
+            }
+    
+    return render(request,'time_table_lab.html',context=info)

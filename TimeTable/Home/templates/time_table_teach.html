@@ -17,8 +17,9 @@
       <div class="dropdown-content">
         <a href="dashboard">DASHBOARD</a>
         <a href="add_teacher">ADD INFO</a>
-        <a href="time_table_lab">Time Table Lab Wise</a>
-        <a href="time_table_teach">Time Table Faculty Wise</a>
+        <a href="login_page">LOGIN</a>
+        <a href="time_table">Time Table Program wise</a>
+        <a href="time_table_lab">Time Table lab wise</a>
       </div>
     </div> 
     <a href="#home">Logout</a>
@@ -29,7 +30,7 @@
       <h3>TIME TABLE</h3>
   </header>
   
-  {% for class_name, timetable_a in time_table_slot.items %}
+  {% for class_name, timetable_a in time_table_teach.items %}
   <table id="myTable" border="1">
     <caption class="bold-blue-caption">{{ class_name }}</caption>
     <tr>

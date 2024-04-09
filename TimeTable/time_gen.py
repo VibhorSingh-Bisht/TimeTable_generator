@@ -1,6 +1,8 @@
 def main(iterations=4, start_hour=8, start_minute=50,increment_time = 50, special_break = 10):
     l = []
     l.append(f'{start_hour:02d}:{start_minute:02d}')
+    if iterations > 6:
+        iterations += 1
     for i in range(iterations):
         if i == 2:
             start_minute += special_break

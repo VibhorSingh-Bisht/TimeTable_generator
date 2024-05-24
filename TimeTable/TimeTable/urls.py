@@ -33,4 +33,5 @@ urlpatterns = [
     path('logout',logout,name='logout_page'),
     path('signup',signup,name='signup'),
     path('dashboard',dashboard,name='dashboard'),
+    path('view_options',view_option,name='view_options')
 ]

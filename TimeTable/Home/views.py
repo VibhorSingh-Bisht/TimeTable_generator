@@ -1,13 +1,13 @@
 from django.shortcuts import render,redirect
 from .models import *
-from django.contrib.auth.decorators import login_required
-#from django.contrib.auth.models import User  
+from django.contrib.auth.decorators import login_required  
 from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import Register
 from django.contrib.auth import authenticate, login, logout
 import back_end_logic
 import time_gen
+import email_is_not
 
 # Create your views here.
 
@@ -20,12 +20,12 @@ def login_page(request):
         password = request.POST.get('password')
 
         if not User.objects.filter(email= email).exists():
-            messages.error(request,'Invalid password')
-            return redirect('signup')
+            messages.error(request,'Incorrect username')
+            #return redirect('signup')
         
         user = authenticate(username = email,password = password)
         if user is None:
-            messages.error(request,"Invalid Password")
+            messages.error(request,"Invalid password")
             return redirect('login_page')
         else:
             login(request,user)
@@ -44,34 +44,42 @@ def signup(request):
         email = request.POST.get('email')
         password = request.POST.get('password')
         
-        # Check if the email already exists
-        if User.objects.filter(email=email).exists():
-            messages.error(request, 'Email already exists')
+        if email_is_not.email_present(email=email):
+            # Check if the email already exists
+            if User.objects.filter(email=email).exists():
+                messages.error(request, 'Email already exists')
+                return redirect('login_page')
+            
+            # Create a new user
+            user = User.objects.create_user(username=email, email=email, password=password)
+            
+            # Save email and password to the User model
+            user.email = email
+            user.set_password(password)
+            user.save()
+            
+            # Create a register instance and save additional fields
+            register = Register.objects.create(
+                user=user,
+                teacher_name=teacher_name,
+                teacher_desig=teacher_desig
+            )
+            
+            messages.info(request, "User created successfully")
             return redirect('login_page')
-        
-        # Create a new user
-        user = User.objects.create_user(username=email, email=email, password=password)
-        
-        # Save email and password to the User model
-        user.email = email
-        user.set_password(password)
-        user.save()
-        
-        # Create a register instance and save additional fields
-        register = Register.objects.create(
-            user=user,
-            teacher_name=teacher_name,
-            teacher_desig=teacher_desig
-        )
-        
-        messages.info(request, "User created successfully")
-        return redirect('login_page')
+        else:
+            messages.info(request,'Invalid Credentials!!')
+            return redirect('signup')
 
     return render(request, 'signup.html')
 
 @login_required(login_url='login_page')
 def dashboard(request):
     return render(request,'dashboard.html')
+
+@login_required(login_url='login_page')
+def view_option(request):
+    return render(request,'view_options.html')
 
 @login_required(login_url='login_page')
 def add_course(request):

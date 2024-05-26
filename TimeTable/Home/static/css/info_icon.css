@@ -1,0 +1,50 @@
+/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    margin-left: 200px; /* Adjust the margin to position the icon next to the text */
+}
+
+.tooltip span {
+    font-weight: bold; /* Make the "i" bold */
+    font-style: italic; 
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 250px; /* Increase width for a wider text box */
+    background-color: black;
+    color: #fff;
+    text-align: left; /* Align text to the left */
+    border-radius: 5px;
+    padding: 10px; /* Increase padding for better spacing */
+    position: absolute;
+    z-index: 1;
+    top: 50%; /* Position on the right side */
+    left: calc(100% + 10px); /* Position on the right side */
+    transform: translateY(-50%); /* Center vertically */
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 12px; /* Smaller text size */
+}
+
+
+/* Tooltip arrow */
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%; /* At the bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+
+/* Show the tooltip text when hovering */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}

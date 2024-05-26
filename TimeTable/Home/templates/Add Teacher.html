@@ -5,13 +5,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <link rel="stylesheet" href="static/css/style.css">
-  <script>
-    function redirectToAddCourse() {
-      window.location.href = "{% url 'add_course' %}";
-    }
-  </script>
+  <link rel="stylesheet" href="static/css/info_icon.css">
   <title>Teachers</title>
 </head>
 
@@ -59,7 +54,7 @@
             </a>
           </li>
           <li class="item">
-            <a href="add_course" class="link flex">
+            <a href="add_subjects" class="link flex">
               <i class="bx bx-folder"></i>
               <span>ADD COURSE</span>
             </a>
@@ -110,9 +105,14 @@
 </nav>
 
 <div class="container">
-  <header>Add Teacher</header>
-
-  <form method = 'post'>
+  <header>
+    Add Teacher
+    <div class="tooltip">
+      <span>ℹ️</span>
+      <div class="tooltiptext">You can add all teachers name once while seprated with commas or you can add one by one.</div>
+    </div>
+  </header>
+  <form method="post">
     {% csrf_token %}
     <div class="form first">
       <div class="details personal">
@@ -120,27 +120,27 @@
 
         <div class="fields">
           <div class="input-field">
-            <label>Teacher Name</label>
-            <input type="text" placeholder="Enter your name" required name="teacher_name">
+            <label>Teacher(s) Name</label>
+            <input type="text" placeholder="Enter name(s)" required name="teacher_name">
           </div>
           <div class="input-field">
-            <label>Teacher Designation</label>
-            <input type="text" placeholder="Enter your designation" required name="teacher_desig">
+            <label>Teacher(s) Designation</label>
+            <input type="text" placeholder="Enter designation" required name="teacher_desig">
           </div>
-          <div class="input-field">
+          <!-- <div class="input-field">
             <label>Teacher Subject</label>
             <input type="text" placeholder="Enter your subject" required name="subjects">
-          </div>
+          </div> -->
         </div>
 
         <div class="buttons">
           <div class="backBtn">
-            <span class="btnText">View Edit </span>
+            <span class="btnText">View Edit</span>
           </div>
           <button class="submit">
             <span class="btnText">Add Teacher</span>
           </button>
-          <button class="submit" onclick="redirectTo('add_course')">
+          <button class="submit" onclick="redirectTo('add_subjects')">
             <span class="btnText">Next</span>
           </button>
         </div>
@@ -151,6 +151,7 @@
 
 <script src="static/javascript/script.js"></script>
 <script src="static/javascript/redirect.js"></script>
+<script src="static/javascript/info_icon.js"></script>
 </body>
 
 </html>

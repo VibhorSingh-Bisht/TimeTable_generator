@@ -13,26 +13,22 @@ class Register(models.Model):
         return self.teacher_name
 
 
-class teacher_data(models.Model):
+class Teacher_data(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    teacher_name = models.CharField(max_length = 35)
-    teacher_desig = models.CharField(max_length = 15)
-    subjects = models.CharField(max_length = 150)
+    teacher_name = models.TextField()
     
-
-class course_data(models.Model):
+    
+class Subjects_data(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    course_name = models.CharField(max_length=25)
-    course_c = models.PositiveSmallIntegerField()
-    course_subs = models.CharField(max_length=200)
+    course_subs = models.TextField()
 
-class timing_data(models.Model):
+class Timing_data(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     timing = models.CharField(max_length=15)
     timing_class = models.CharField(max_length=30)
 
 
-class infrastructure_data(models.Model):
+class Infrastructure_data(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     infra_name = models.CharField(max_length=25)
     infra = models.CharField(max_length=25)

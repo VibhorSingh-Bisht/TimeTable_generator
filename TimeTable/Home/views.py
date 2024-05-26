@@ -82,7 +82,7 @@ def view_option(request):
     return render(request,'view_options.html')
 
 @login_required(login_url='login_page')
-def add_course(request):
+def add_subjects(request):
     if request.method == 'POST':
         data = request.POST
         course_name = data.get('course_name')
@@ -95,7 +95,7 @@ def add_course(request):
             course_c = course_c,
             course_subs = course_subs
         )
-    return render(request,"Add Course.html")
+    return render(request,"Add subjects.html")
 
 
 @login_required(login_url='login_page')

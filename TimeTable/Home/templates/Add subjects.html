@@ -6,13 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" type='text/css' href="static/css/style.css">
-
-  <title>Infrastructure</title>
+  <link rel="stylesheet" type='text/css' href='static/css/style.css'>
+  <link rel="stylesheet" type='text/css' href='static/css/info_icon.css'>
+  <title>Add Subjects</title>
 </head>
-
 <body>
-
   <nav class="sidebar locked">
     <div class="logo_items flex">
       <span class="nav_image"></span>
@@ -56,9 +54,9 @@
             </a>
           </li>
           <li class="item">
-            <a href="add_subjects" class="link flex">
+            <a href="add_infrastructure" class="link flex">
               <i class="bx bx-folder"></i>
-              <span>ADD COURSE</span>
+              <span>ADD INFRASTRUCTURE</span>
             </a>
           </li>
           <li class="item">
@@ -105,11 +103,14 @@
     </div> <!-- Closing div for menu_container -->
 
   </nav>
-
   <div class="container">
-    <header>Add Infrastructure</header>
-
-    <form action="#" method='post'>
+    <header>Add Subjects
+      <div class="tooltip">
+        <span>ℹ️</span>
+        <div class="tooltiptext">You can add all subjects name once while seprated with commas or you can add one by one.</div>
+      </div>
+    </header>
+    <form action="#" method="post">
       {% csrf_token %}
       <div class="form first">
         <div class="details personal">
@@ -117,30 +118,20 @@
 
           <div class="fields">
             <div class="input-field">
-              <label>Field</label>
-              <input type="text" placeholder="Enter Field" required name="infra_name">
+              <label>Subject(s)</label>
+              <input type="text" placeholder="Enter subject(s)" required name="course_name">
             </div>
-            <div class="input-field">
-              <label>Infrastructure(LT's)</label>
-              <input type="text" placeholder="Enter Infrastructure" required name="infra">
-            </div>
-            <div class="input-field">
-              <label>Course(B.tech,Bca)</label>
-              <input type="text" placeholder="Enter course" required name="infra_value">
-            </div>
-
 
             <div class="buttons">
               <div class="backBtn">
-
-                <span class="btnText">View Edit Infrastructure</span>
+                <span class="btnText">View/Edit Subjects</span>
               </div>
 
               <button class="submit">
-                <span class="btnText">Add Infrastructure</span>
+                <span class="btnText">Add Subject(s)</span>
 
               </button>
-              <button class="submit" onclick="redirectTo('add_working')">
+              <button class="submit" onclick="redirectTo('add_timing')">
                 <span class="btnText">Next</span>
               </button>
             </div>
@@ -149,8 +140,9 @@
     </form>
   </div>
 
-  <script src="static/javasript/script.js"></script>
+  <script src='static/javasript/script.js'></script>
   <script src="static/javascript/redirect.js"></script>
+  <script src="static/javascript/info_icon.js"></script>
 </body>
 
 </html>

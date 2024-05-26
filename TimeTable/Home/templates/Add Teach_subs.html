@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Create Schedule</h1>
+    <form method="POST">
+        {% csrf_token %}
+        
+        <!-- Teacher Dropdown -->
+        <label for="teacher">Choose Teacher:</label>
+        <select name="teacher" id="teacher">
+            {% for teacher in teachers %}
+                <option value="{{ teacher.id }}">{{ teacher.name }}</option>
+            {% endfor %}
+        </select>
+        
+        <!-- Subject Dropdown -->
+        <label for="subject">Choose Subject:</label>
+        <select name="subject" id="subject">
+            {% for subject in subjects %}
+                <option value="{{ subject.id }}">{{ subject.name }}</option>
+            {% endfor %}
+        </select>
+        
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

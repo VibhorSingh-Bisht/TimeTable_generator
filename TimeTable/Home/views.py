@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from .models import *
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, get_object_or_404  
+from django.shortcuts import render 
 from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import Register
@@ -9,7 +9,8 @@ from django.contrib.auth import authenticate, login, logout
 import back_end_logic
 import time_gen
 import email_is_not
-from database_data import data_clean_subjects,data_clean_teach,data_clean_course
+from database_data_clean import data_clean_subjects,data_clean_teach,data_clean_course
+from database_data import data_course, data_subject, data_teach
 # Create your views here.
 
 def home(request):
@@ -87,10 +88,12 @@ def add_subjects(request):
     if request.method == 'POST':
         data = request.POST
         subject_name = data.get('subject_name')
-        Subjects_data.objects.create(
-            user = request.user,
-            subject_name  = subject_name,
-        )
+        cleaned_data = data_clean_subjects(subject_name)
+        for i in cleaned_data:
+            Subjects_data.objects.create(
+                user = request.user,
+                subject_name  = i,
+            )
     return render(request,"Add subjects.html")
 
 
@@ -100,11 +103,13 @@ def add_teacher(request):
         data = request.POST
         teacher_name = data.get('teacher_name')
         teacher_desig = data.get('teacher_desig')
-        Teacher_data.objects.create(
-            user = request.user,
-            teacher_name  = teacher_name,
-            teacher_desig = teacher_desig,
-        )
+        cleaned_data = data_clean_teach(teacher_name)
+        for i in cleaned_data:
+            Teacher_data.objects.create(
+                user = request.user,
+                teacher_name  = i,
+                teacher_desig = teacher_desig,
+            )
 
     return render(request, "Add Teacher.html")
 
@@ -113,21 +118,23 @@ def add_courses(request):
     if request.method == 'POST':
         data = request.POST
         course_name = data.get('course_name')
-        Course_data.objects.create(
-            user = request.user,
-            course_name  = course_name,
-        )
+        cleaned_data = data_clean_course(course_name)
+        for i in cleaned_data:
+            Course_data.objects.create(
+                user = request.user,
+                course_name  = i
+            )
     return render(request,"Add course.html")
 
 
 @login_required(login_url='login_page')
 def add_teach_subs(request):
     # Convert the list of subjects into a list of tuples
-    subjects_data = data_clean_subjects()
+    subjects_data = data_subject()
     subjects = [(f'ID_{index}', subject) for index, subject in enumerate(subjects_data, start=1)]
     
     # Convert the list of teachers into a list of tuples
-    teachers_data = data_clean_teach()
+    teachers_data = data_teach()
     teachers = [(f'ID_{index}', teacher) for index, teacher in enumerate(teachers_data, start=1)]
     
     selected_teacher = None
@@ -137,7 +144,25 @@ def add_teach_subs(request):
         teacher_id = request.POST.get('teacher')
         subject_ids = request.POST.getlist('subjects[]')  # Get list of selected subjects
 
-        return render(request, 'schedule_form.html', {
+        # Extract the teacher name from the form data
+        teacher_name = next((teacher for id, teacher in teachers if id == teacher_id), None)
+        # Create or get the teacher object
+        teacher, created = Teacher_data.objects.get_or_create(name=teacher_name)
+
+        # Clear existing subjects and add new ones
+        teacher.subjects.clear()
+        for subject_id in subject_ids:
+            subject_name = next((subject for id, subject in subjects if id == subject_id), None)
+            subject, created = Subjects_data.objects.get_or_create(name=subject_name)
+            teacher.subjects.add(subject)
+
+        teacher.save()
+
+        # Set selected teacher and subjects for rendering
+        selected_teacher = teacher
+        teacher_subjects = teacher.subjects.all()
+
+        return render(request, 'Add Teach_subs.html', {
             'teachers': teachers,
             'subjects': subjects,
             'selected_teacher': selected_teacher,
@@ -145,6 +170,35 @@ def add_teach_subs(request):
         })
     
     return render(request, 'Add Teach_subs.html',{
+        'teachers': teachers,
+        'subjects': subjects
+    })
+
+
+def add_course_subs(request):
+    # Convert the list of subjects into a list of tuples
+    subjects_data = data_subject()
+    subjects = [(f'ID_{index}', subject) for index, subject in enumerate(subjects_data, start=1)]
+    
+    # Convert the list of teachers into a list of tuples
+    course_data = data_course()
+    teachers = [(f'ID_{index}', teacher) for index, teacher in enumerate(course_data, start=1)]
+    
+    selected_subjects = None
+    course_subjects = None
+
+    if request.method == 'POST':
+        course_id = request.POST.get('teacher')
+        subject_ids = request.POST.getlist('subjects[]')  # Get list of selected subjects
+
+        return render(request, 'Add Teach_subs.html', {
+            'teachers': teachers,
+            'subjects': subjects,
+            'selected_subjects': selected_subjects,
+            'course_subjects': course_subjects
+        })
+    
+    return render(request, 'Add course_subs.html',{
         'teachers': teachers,
         'subjects': subjects
     })

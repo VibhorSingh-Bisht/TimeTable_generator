@@ -150,59 +150,59 @@
     </div>
   </nav>
   <!-- JavaScript -->  
-      <div class="content">
-        <header>
-          <h1>Add Teacher </h1>
-          <div class="tooltip">
+  <div class="content">
+    <header>
+        <h1>Add Teacher</h1>
+        <div class="tooltip">
             <span>ℹ️</span>
             <div class="tooltiptext">You can add all teachers name once while separated with commas or you can add one by one.</div>
-          </div>
-        </header>
-          <form method="POST">
-              {% csrf_token %}
-              
-              <!-- Teacher Dropdown -->
-              <div class="form-group">
-                  <label for="teacher">Choose Teacher:</label>
-                  <select name="teacher" id="teacher">
-                      {% for teacher_id, teacher_name in teachers %}
-                          <option value="{{ teacher_id }}">{{ teacher_name }}</option>
-                      {% endfor %}
-                  </select>
-              </div>
-              
-              <!-- Subjects Dropdown with multiple selection -->
-              <div class="form-group">
-                  <label for="subjects">Choose Subjects:</label>
-                  <select name="subjects[]" id="subjects" multiple>
-                      {% for subject_id, subject_name in subjects %}
-                          <option value="{{ subject_id }}">{{ subject_name }}</option>
-                      {% endfor %}
-                  </select>
-              </div>
-              
-              <button type="submit" class="submit-btn">Submit</button>
-          </form>
-          
-          {% if selected_teacher %}
-              <h2>Selected Teacher: {{ selected_teacher.name }}</h2>
-              <table border="1">
-                  <tr>
-                      <th>Subjects {{ selected_teacher.name }} can teach</th>
-                  </tr>
-                  {% for subject in teacher_subjects %}
-                      <tr>
-                          <td>{{ subject.name }}</td>
-                      </tr>
-                  {% endfor %}
-              </table>
-          {% endif %}
-      </div>
-  </div>
-    <button class="submit" onclick="redirectTo('add_timing')">
+        </div>
+    </header>
+    <form method="POST">
+        {% csrf_token %}
+        
+        <!-- Teacher Dropdown -->
+        <div class="form-group">
+            <label for="teacher">Choose Teacher:</label>
+            <select name="teacher" id="teacher">
+                {% for teacher_id, teacher_name in teachers %}
+                    <option value="{{ teacher_id }}">{{ teacher_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <!-- Subjects Dropdown with multiple selection -->
+        <div class="form-group">
+            <label for="subjects">Choose Subjects:</label>
+            <select name="subjects[]" id="subjects" multiple>
+                {% for subject_id, subject_name in subjects %}
+                    <option value="{{ subject_id }}">{{ subject_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <button type="submit" class="submit-btn">Submit</button>
+    </form>
+    
+    {% if selected_teacher %}
+        <h2>Selected Teacher: {{ selected_teacher }}</h2>
+        <table border="1">
+            <tr>
+                <th>Subjects {{ selected_teacher }} can teach</th>
+            </tr>
+            {% for subject in teacher_subjects %}
+                <tr>
+                    <td>{{ subject }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</div>
+    <button class="submit" onclick="redirectTo('add_course_subs')">
       <span class="btnText">Next</span>
     </button>
     <script src="static/javaScript/navbar.js"></script>
+    <script src="static/javascript/redirect.js"></script>
 </body>
 
 </html>

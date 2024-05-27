@@ -14,17 +14,17 @@ class Register(models.Model):
 
 class Teacher_data(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    teacher_name = models.TextField()
+    teacher_name = models.CharField(max_length=35)
     teacher_desig = models.CharField(max_length=20)
     
     
 class Subjects_data(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    subject_name = models.TextField()
+    subject_name = models.CharField(max_length=70)
 
 class Course_data(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-    course_name = models.TextField()
+    course_name = models.CharField(max_length=25)
 
 class Timing_data(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -45,5 +45,5 @@ class WorkingDays_data(models.Model):
 
 class Teacher_subjects(models.Model):
     user = models.ForeignKey(User, on_delete= models.CASCADE)
-    
+
 

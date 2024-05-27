@@ -26,6 +26,7 @@ urlpatterns = [
     path('add_subjects',add_subjects,name='add_subjects'),
     path('add_courses',add_courses,name='add_courses'),
     path('add_teach_subs',add_teach_subs,name='add_teach_subs'),
+    path("add_course_subs",add_course_subs,name='add_course_subs'),
     path('add_infrastructure',add_infrastructure,name='add_infrastructure'),
     path('add_working',add_working_days,name='add_working_days'),
     path('time_table',time_table,name='time_table'),

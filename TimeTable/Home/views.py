@@ -129,78 +129,83 @@ def add_courses(request):
 
 @login_required(login_url='login_page')
 def add_teach_subs(request):
-    # Convert the list of subjects into a list of tuples
-    subjects_data = data_subject()
-    subjects = [(f'ID_{index}', subject) for index, subject in enumerate(subjects_data, start=1)]
-    
-    # Convert the list of teachers into a list of tuples
-    teachers_data = data_teach()
-    teachers = [(f'ID_{index}', teacher) for index, teacher in enumerate(teachers_data, start=1)]
-    
-    selected_teacher = None
+    subjects_data = Subjects_data.objects.all()
+    subjects = [(subject.id, subject.subject_name) for subject in subjects_data]  # Generate tuples with ID and name
+
+    teachers_data = Teacher_data.objects.all()
+    teachers = [(teacher.teacher_name, teacher.teacher_desig) for teacher in teachers_data]
+
+    selected_teacher_name = None
     teacher_subjects = None
 
     if request.method == 'POST':
-        teacher_id = request.POST.get('teacher')
-        subject_ids = request.POST.getlist('subjects[]')  # Get list of selected subjects
+        teacher_name = request.POST.get('teacher')
+        teacher_desig = request.POST.get('teacher_desig')
+        subject_ids = request.POST.getlist('subjects[]')
 
-        # Extract the teacher name from the form data
-        teacher_name = next((teacher for id, teacher in teachers if id == teacher_id), None)
-        # Create or get the teacher object
-        teacher, created = Teacher_data.objects.get_or_create(name=teacher_name)
-
-        # Clear existing subjects and add new ones
-        teacher.subjects.clear()
+        # Add new subjects without removing existing ones
         for subject_id in subject_ids:
-            subject_name = next((subject for id, subject in subjects if id == subject_id), None)
-            subject, created = Subjects_data.objects.get_or_create(name=subject_name)
-            teacher.subjects.add(subject)
+            subject_name = Subjects_data.objects.get(id=subject_id).subject_name
+            TeacherSubjects.objects.get_or_create(
+                teacher_name=teacher_name,
+                teacher_desig=teacher_desig,
+                subject_name=subject_name
+            )
 
-        teacher.save()
+        # Get subjects associated with the teacher
+        teacher_subjects = TeacherSubjects.objects.filter(
+            teacher_name=teacher_name, 
+            teacher_desig=teacher_desig
+        )
 
-        # Set selected teacher and subjects for rendering
-        selected_teacher = teacher
-        teacher_subjects = teacher.subjects.all()
+        # Set selected teacher for rendering
+        selected_teacher_name = teacher_name
 
-        return render(request, 'Add Teach_subs.html', {
-            'teachers': teachers,
-            'subjects': subjects,
-            'selected_teacher': selected_teacher,
-            'teacher_subjects': teacher_subjects
-        })
-    
-    return render(request, 'Add Teach_subs.html',{
+    return render(request, 'Add Teach_subs.html', {
         'teachers': teachers,
-        'subjects': subjects
+        'subjects': subjects,
+        'selected_teacher_name': selected_teacher_name,
+        'teacher_subjects': teacher_subjects
     })
 
 
+@login_required(login_url='login_page')
 def add_course_subs(request):
-    # Convert the list of subjects into a list of tuples
-    subjects_data = data_subject()
-    subjects = [(f'ID_{index}', subject) for index, subject in enumerate(subjects_data, start=1)]
-    
-    # Convert the list of teachers into a list of tuples
-    course_data = data_course()
-    teachers = [(f'ID_{index}', teacher) for index, teacher in enumerate(course_data, start=1)]
-    
-    selected_subjects = None
+    subjects_data = Subjects_data.objects.all()
+    subjects = [(subject.id, subject.subject_name) for subject in subjects_data]
+
+    courses_data = Course_data.objects.all()
+    courses = [(course.id, course.course_name) for course in courses_data]
+
+    selected_course_name = None
     course_subjects = None
 
     if request.method == 'POST':
-        course_id = request.POST.get('teacher')
-        subject_ids = request.POST.getlist('subjects[]')  # Get list of selected subjects
+        course_id = request.POST.get('course')
+        subject_ids = request.POST.getlist('subjects[]')
 
-        return render(request, 'Add Teach_subs.html', {
-            'teachers': teachers,
-            'subjects': subjects,
-            'selected_subjects': selected_subjects,
-            'course_subjects': course_subjects
-        })
-    
-    return render(request, 'Add course_subs.html',{
-        'teachers': teachers,
-        'subjects': subjects
+        course = Course_data.objects.get(id=course_id)
+
+        # Delete existing subjects for the course
+        CourseSubjects.objects.filter(course_name=course.course_name).delete()
+
+        # Create new CourseSubjects instances for each selected subject
+        for subject_id in subject_ids:
+            subject_name = Subjects_data.objects.get(id=subject_id).subject_name
+            CourseSubjects.objects.create(
+                user=request.user,
+                course_name=course.course_name,
+                subject_name=subject_name
+            )
+
+        selected_course_name = course.course_name
+        course_subjects = CourseSubjects.objects.filter(course_name=course.course_name)
+
+    return render(request, 'add course_subs.html', {
+        'courses': courses,
+        'subjects': subjects,
+        'selected_course_name': selected_course_name,
+        'course_subjects': course_subjects
     })
 
 

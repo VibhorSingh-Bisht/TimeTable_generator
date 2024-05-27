@@ -43,7 +43,21 @@ class WorkingDays_data(models.Model):
     Data = models.CharField(max_length = 25)
     Total = models.IntegerField()
 
-class Teacher_subjects(models.Model):
-    user = models.ForeignKey(User, on_delete= models.CASCADE)
+
+class TeacherSubjects(models.Model):
+    teacher_name = models.CharField(max_length=35)
+    teacher_desig = models.CharField(max_length=20)
+    subject_name = models.CharField(max_length=70)
+
+    def __str__(self):
+        return f"{self.teacher_name} teaches {self.subject_name}"
+    
+class CourseSubjects(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    course_name = models.CharField(max_length=25)
+    subject_name = models.TextField()  # Store subjects as comma-separated values
+
+    def __str__(self):
+        return f"{self.course} - {self.subject_name}"
 
 

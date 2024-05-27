@@ -1,0 +1,138 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* ... (existing styles) ... */
+
+/* Dropdown styles */
+select {
+  width: 300px; /* Increased the width */
+  max-width: 100%; /* Ensure it doesn't exceed the container's width */
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  white-space: nowrap; /* Prevents the text from wrapping */
+  overflow-x: auto; /* Enables horizontal scrolling */
+}
+
+select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 119, 255, 0.2);
+}
+
+option {
+  padding: 8px;
+}
+
+/* Main content area */
+.content {
+  padding: 20px;
+  margin-top: 80px; /* Add margin-top to avoid overlapping with the navbar */
+  transition: margin-left 0.5s ease;
+  flex-grow: 1;
+  margin-left: 260px; /* Adjust this value based on the width of your sidebar */
+}
+
+.sidebar.close ~ .content {
+  margin-left: 80px; /* Adjust this value based on the width of the collapsed sidebar */
+}
+
+@media screen and (max-width: 768px) {
+  .content {
+    margin-left: 0;
+    margin-top: 60px; /* Adjust margin-top for smaller screens */
+  }
+
+  .sidebar.close ~ .content {
+    margin-left: 0;
+  }
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+select {
+  width: 300px; /* Increased the width */
+  max-width: 100%; /* Ensure it doesn't exceed the container's width */
+  padding: 12px;
+  white-space: nowrap; /* Prevents the text from wrapping */
+  overflow-x: auto; /* Enables horizontal scrolling */
+}
+
+.submit-btn {
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+}
+
+.submit {
+  display: block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* Main Content Area */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Submenu styles */
+.submenu {
+  background-color: #f0f0f0; /* Add a background color to the submenu */
+  padding: 10px; /* Add some padding for better visibility */
+  border-radius: 5px; /* Add rounded corners for a modern look */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box-shadow for better visibility */
+  transition: all 0.3s ease; /* Add a smooth transition effect */
+}
+
+.submenu .nav_link.sublink {
+  padding: 8px 12px; /* Adjust the padding for submenu links */
+  color: #333; /* Set the text color for submenu links */
+  transition: background-color 0.3s ease; /* Add a smooth transition effect for the background color */
+}
+
+.submenu .nav_link.sublink:hover {
+  background-color: #e0e0e0; /* Change the background color on hover */
+}

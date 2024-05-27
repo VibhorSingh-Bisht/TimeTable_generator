@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from .models import *
-from django.contrib.auth.decorators import login_required  
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, get_object_or_404  
 from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import Register
@@ -8,7 +9,7 @@ from django.contrib.auth import authenticate, login, logout
 import back_end_logic
 import time_gen
 import email_is_not
-
+from database_data import data_clean_subjects,data_clean_teach,data_clean_course
 # Create your views here.
 
 def home(request):
@@ -85,15 +86,10 @@ def view_option(request):
 def add_subjects(request):
     if request.method == 'POST':
         data = request.POST
-        course_name = data.get('course_name')
-        course_c = data.get('course_c')
-        course_subs = data.get('course_subs')
-        print(course_name, course_c,course_subs)
-        course_data.objects.create(
+        subject_name = data.get('subject_name')
+        Subjects_data.objects.create(
             user = request.user,
-            course_name  = course_name,
-            course_c = course_c,
-            course_subs = course_subs
+            subject_name  = subject_name,
         )
     return render(request,"Add subjects.html")
 
@@ -104,15 +100,55 @@ def add_teacher(request):
         data = request.POST
         teacher_name = data.get('teacher_name')
         teacher_desig = data.get('teacher_desig')
-        subjects = data.get('subjects')
-        teacher_data.objects.create(
+        Teacher_data.objects.create(
             user = request.user,
             teacher_name  = teacher_name,
             teacher_desig = teacher_desig,
-            subjects = subjects
         )
 
     return render(request, "Add Teacher.html")
+
+@login_required(login_url='login_page')
+def add_courses(request):
+    if request.method == 'POST':
+        data = request.POST
+        course_name = data.get('course_name')
+        Course_data.objects.create(
+            user = request.user,
+            course_name  = course_name,
+        )
+    return render(request,"Add course.html")
+
+
+@login_required(login_url='login_page')
+def add_teach_subs(request):
+    # Convert the list of subjects into a list of tuples
+    subjects_data = data_clean_subjects()
+    subjects = [(f'ID_{index}', subject) for index, subject in enumerate(subjects_data, start=1)]
+    
+    # Convert the list of teachers into a list of tuples
+    teachers_data = data_clean_teach()
+    teachers = [(f'ID_{index}', teacher) for index, teacher in enumerate(teachers_data, start=1)]
+    
+    selected_teacher = None
+    teacher_subjects = None
+
+    if request.method == 'POST':
+        teacher_id = request.POST.get('teacher')
+        subject_ids = request.POST.getlist('subjects[]')  # Get list of selected subjects
+
+        return render(request, 'schedule_form.html', {
+            'teachers': teachers,
+            'subjects': subjects,
+            'selected_teacher': selected_teacher,
+            'teacher_subjects': teacher_subjects
+        })
+    
+    return render(request, 'Add Teach_subs.html',{
+        'teachers': teachers,
+        'subjects': subjects
+    })
+
 
 @login_required(login_url='login_page')
 def add_timing(request):
@@ -120,7 +156,7 @@ def add_timing(request):
         data = request.POST
         timing = data.get('timing')
         timing_class = data.get('timing_class')
-        timing_data.objects.create(
+        Timing_data.objects.create(
             user = request.user,
             timing  = timing,
             timing_class = timing_class
@@ -135,7 +171,7 @@ def add_infrastructure(request):
         infra = data.get('infra')
         infra_value = data.get('infra_value')
 
-        infrastructure_data.objects.create(
+        Infrastructure_data.objects.create(
             user = request.user,
             infra_name = infra_name,
             infra = infra,

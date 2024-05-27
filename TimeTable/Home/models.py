@@ -8,7 +8,6 @@ class Register(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     teacher_name = models.CharField(max_length=30)
     teacher_desig = models.CharField(max_length=20)
-    
     def __str__(self):
         return self.teacher_name
 
@@ -16,11 +15,16 @@ class Register(models.Model):
 class Teacher_data(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     teacher_name = models.TextField()
+    teacher_desig = models.CharField(max_length=20)
     
     
 class Subjects_data(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    course_subs = models.TextField()
+    subject_name = models.TextField()
+
+class Course_data(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    course_name = models.TextField()
 
 class Timing_data(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -38,4 +42,8 @@ class WorkingDays_data(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     Data = models.CharField(max_length = 25)
     Total = models.IntegerField()
+
+class Teacher_subjects(models.Model):
+    user = models.ForeignKey(User, on_delete= models.CASCADE)
+    
 

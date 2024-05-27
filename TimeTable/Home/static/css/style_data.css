@@ -5,8 +5,6 @@
   font-family: "Poppins", sans-serif;
 }
 
-/* ... (existing styles) ... */
-
 /* Dropdown styles */
 select {
   width: 300px; /* Increased the width */
@@ -22,6 +20,8 @@ select {
   -moz-appearance: none;
   white-space: nowrap; /* Prevents the text from wrapping */
   overflow-x: auto; /* Enables horizontal scrolling */
+  position: relative; /* Ensure relative positioning */
+  z-index: 2; /* Higher z-index to appear above sidebar */
 }
 
 select:focus {
@@ -31,6 +31,40 @@ select:focus {
 
 option {
   padding: 8px;
+}
+
+/* Sidebar styles */
+.sidebar {
+  z-index: 1; /* Ensure the sidebar is below the dropdown */
+}
+
+/* Tooltip styles */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* Position above the tooltip icon */
+  left: 50%;
+  margin-left: -100px; /* Use half of the tooltip width to center it */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
 }
 
 /* Main content area */
@@ -81,6 +115,8 @@ select {
   padding: 12px;
   white-space: nowrap; /* Prevents the text from wrapping */
   overflow-x: auto; /* Enables horizontal scrolling */
+  position: relative; /* Ensure relative positioning */
+  z-index: 2; /* Higher z-index to appear above sidebar */
 }
 
 .submit-btn {

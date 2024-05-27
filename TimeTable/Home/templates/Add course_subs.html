@@ -151,7 +151,13 @@
   </nav>
   <!-- JavaScript -->  
       <div class="content">
-          <h1>Create Schedule</h1>
+        <header>
+          <h1>Add Teacher </h1>
+          <div class="tooltip">
+            <span>ℹ️</span>
+            <div class="tooltiptext">You can add all teachers name once while separated with commas or you can add one by one.</div>
+          </div>
+        </header>
           <form method="POST">
               {% csrf_token %}
               
@@ -196,7 +202,7 @@
     <button class="submit" onclick="redirectTo('add_timing')">
       <span class="btnText">Next</span>
     </button>
-    <script src="static/js/navbar.js"></script>
+    <script src="static/javaScript/navbar.js"></script>
 </body>
 
 </html>

@@ -20,8 +20,6 @@
     <div class="menu_content">
       <ul class="menu_items">
         <div class="menu_title menu_dahsboard"></div>
-        <!-- duplicate or remove this li tag if you want to add or remove navlink with submenu -->
-        <!-- start -->
         <li class="item">
           <div href="#" class="nav_link submenu_item">
             <span class="navlink_icon">
@@ -30,7 +28,6 @@
             <span class="navlink">Home</span>
             <i class="bx bx-chevron-right arrow-left"></i>
           </div>
-
           <ul class="menu_items submenu">
             <a href="#" class="nav_link sublink">Nav Sub Link</a>
             <a href="#" class="nav_link sublink">Nav Sub Link</a>
@@ -38,10 +35,6 @@
             <a href="#" class="nav_link sublink">Nav Sub Link</a>
           </ul>
         </li>
-        <!-- end -->
-
-        <!-- duplicate this li tag if you want to add or remove  navlink with submenu -->
-        <!-- start -->
         <li class="item">
           <div href="#" class="nav_link submenu_item">
             <span class="navlink_icon">
@@ -50,7 +43,6 @@
             <span class="navlink">Overview</span>
             <i class="bx bx-chevron-right arrow-left"></i>
           </div>
-
           <ul class="menu_items submenu">
             <a href="#" class="nav_link sublink">Nav Sub Link</a>
             <a href="#" class="nav_link sublink">Nav Sub Link</a>
@@ -58,23 +50,16 @@
             <a href="#" class="nav_link sublink">Nav Sub Link</a>
           </ul>
         </li>
-        <!-- end -->
       </ul>
-
       <ul class="menu_items">
         <div class="menu_title menu_editor"></div>
-        <!-- duplicate these li tag if you want to add or remove navlink only -->
-        <!-- Start -->
         <li class="item">
           <a href="#" class="nav_link">
             <span class="navlink_icon">
               <i class="bx bxs-magic-wand"></i>
             </span>
-            <span class="navlink">Magic build</span>
-          </a>
+            <span class="navlink">Magic build</a>
         </li>
-        <!-- End -->
-
         <li class="item">
           <a href="#" class="nav_link">
             <span class="navlink_icon">
@@ -135,8 +120,6 @@
           </a>
         </li>
       </ul>
-
-      <!-- Sidebar Open / Close -->
       <div class="bottom_content">
         <div class="bottom expand_sidebar">
           <span> Expand</span>
@@ -162,7 +145,6 @@
     <form method="POST">
       {% csrf_token %}
       
-      <!-- Teacher Dropdown -->
       <div class="form-group">
           <label for="teacher">Choose Teacher:</label>
           <select name="teacher" id="teacher">
@@ -173,7 +155,11 @@
           <input type="hidden" name="teacher_desig" id="teacher_desig">
       </div>
       
-      <!-- Subjects Dropdown with multiple selection -->
+      <div class="form-group">
+          <label for="subject_search">Search Subjects:</label>
+          <input type="text" id="subject_search" placeholder="Search for subjects..">
+      </div>
+      
       <div class="form-group">
           <label for="subjects">Choose Subjects:</label>
           <select name="subjects[]" id="subjects" multiple>
@@ -184,9 +170,9 @@
       </div>
       
       <button type="submit" class="submit-btn">Submit</button>
-  </form>
+    </form>
 
-  {% if selected_teacher_name %}
+    {% if selected_teacher_name %}
       <h2>Selected Teacher: {{ selected_teacher_name }}</h2>
       <table border="1">
           <tr>
@@ -198,21 +184,37 @@
               </tr>
           {% endfor %}
       </table>
-  {% endif %}
-</div>
-<script>
-  // Script to handle the designation update in the hidden field
-  document.getElementById('teacher').addEventListener('change', function() {
-      var selectedOption = this.options[this.selectedIndex];
-      var teacherDesig = selectedOption.getAttribute('data-desig');
-      document.getElementById('teacher_desig').value = teacherDesig;
-  });
-</script>
-<button class="submit" onclick="redirectTo('add_course_subs')">
-    <span class="btnText">Next</span>
-</button>
-<script src="static/javaScript/navbar.js"></script>
-    <script src="static/javascript/redirect.js"></script>
-</body>
+    {% endif %}
+  </div>
+  
+  <script>
+    document.getElementById('teacher').addEventListener('change', function() {
+        var selectedOption = this.options[this.selectedIndex];
+        var teacherDesig = selectedOption.getAttribute('data-desig');
+        document.getElementById('teacher_desig').value = teacherDesig;
+    });
 
+    // Script to filter subjects in the dropdown
+    document.getElementById('subject_search').addEventListener('keyup', function() {
+        var searchQuery = this.value.toLowerCase();
+        var subjectOptions = document.getElementById('subjects').options;
+        
+        for (var i = 0; i < subjectOptions.length; i++) {
+            var subjectText = subjectOptions[i].text.toLowerCase();
+            if (subjectText.includes(searchQuery)) {
+                subjectOptions[i].style.display = '';
+            } else {
+                subjectOptions[i].style.display = 'none';
+            }
+        }
+    });
+  </script>
+  
+  <button class="submit" onclick="redirectTo('add_course_subs')">
+    <span class="btnText">Next</span>
+  </button>
+  
+  <script src="static/javaScript/navbar.js"></script>
+  <script src="static/javascript/redirect.js"></script>
+</body>
 </html>

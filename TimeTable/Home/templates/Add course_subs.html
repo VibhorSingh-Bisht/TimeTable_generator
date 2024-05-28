@@ -160,41 +160,62 @@
     </header>
     
     <form method="POST">
-        {% csrf_token %}
+      {% csrf_token %}
+    
+      <!-- Course Dropdown -->
+      <div class="form-group">
+          <label for="course">Choose Course:</label>
+          <select name="course" id="course">
+              {% for course_id, course_name in courses %}
+                  <option value="{{ course_id }}">{{ course_name }}</option>
+              {% endfor %}
+          </select>
+      </div>
       
-        <!-- Course Dropdown -->
-        <div class="form-group">
-            <label for="course">Choose Course:</label>
-            <select name="course" id="course">
-                {% for course_id, course_name in courses %}
-                    <option value="{{ course_id }}">{{ course_name }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        
-        <!-- Subjects Dropdown with multiple selection -->
-        <div class="form-group">
-            <label for="subjects">Choose Subjects:</label>
-            <select name="subjects[]" id="subjects" multiple>
-                {% for subject_id, subject_name in subjects %}
-                    <option value="{{ subject_id }}">{{ subject_name }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        
-        <button type="submit" class="submit-btn">Submit</button>
-    </form>
+      <!-- Search box above the subjects dropdown -->
+      <div class="form-group">
+          <label for="search_subjects">Search Subjects:</label>
+          <input type="text" id="search_subjects" placeholder="Search subjects...">
+      </div>
 
-    {% if selected_course_name %}
-        <h2>Selected Course: {{ selected_course_name }}</h2>
-        <h3>Subjects included:</h3>
-        <ul>
-            {% for cs in course_subjects %}
-                <li>{{ cs.subject_name }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+      <!-- Subjects Dropdown with multiple selection -->
+      <div class="form-group">
+          <label for="subjects">Choose Subjects:</label>
+          <select name="subjects[]" id="subjects" multiple>
+              {% for subject_id, subject_name in subjects %}
+                  <option value="{{ subject_id }}">{{ subject_name }}</option>
+              {% endfor %}
+          </select>
+      </div>
+      
+      <button type="submit" class="submit-btn">Submit</button>
+  </form>
+
+  {% if selected_course_name %}
+      <h2>Selected Course: {{ selected_course_name }}</h2>
+      <h3>Subjects included:</h3>
+      <ul>
+          {% for cs in course_subjects %}
+              <li>{{ cs.subject_name }}</li>
+          {% endfor %}
+      </ul>
+  {% endif %}
 </div>
+<script>
+      // Script to handle the search functionality in the subjects dropdown
+      document.getElementById('search_subjects').addEventListener('input', function() {
+          var filter = this.value.toUpperCase();
+          var options = document.getElementById('subjects').options;
+          for (var i = 0; i < options.length; i++) {
+              var txtValue = options[i].textContent || options[i].innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                  options[i].style.display = "";
+              } else {
+                  options[i].style.display = "none";
+              }
+          }
+      });
+  </script>
 
     <button class="submit" onclick="redirectTo('add_timing')">
       <span class="btnText">Next</span>
@@ -202,5 +223,4 @@
     <script src="static/javaScript/navbar.js"></script>
     <script src="static/javascript/redirect.js"></script>
 </body>
-
 </html>

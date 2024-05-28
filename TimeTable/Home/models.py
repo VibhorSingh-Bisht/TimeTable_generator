@@ -24,7 +24,7 @@ class Subjects_data(models.Model):
 
 class Course_data(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-    course_name = models.CharField(max_length=25)
+    course_name = models.CharField(max_length=40)
 
 class Timing_data(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -54,7 +54,7 @@ class TeacherSubjects(models.Model):
     
 class CourseSubjects(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    course_name = models.CharField(max_length=25)
+    course_name = models.CharField(max_length=40)
     subject_name = models.TextField()  # Store subjects as comma-separated values
 
     def __str__(self):

@@ -10,7 +10,6 @@ import back_end_logic
 import time_gen
 import email_is_not
 from database_data_clean import data_clean_subjects,data_clean_teach,data_clean_course
-from database_data import data_course, data_subject, data_teach
 # Create your views here.
 
 def home(request):
@@ -129,7 +128,7 @@ def add_courses(request):
 
 @login_required(login_url='login_page')
 def add_teach_subs(request):
-    subjects_data = Subjects_data.objects.all()
+    subjects_data = Subjects_data.objects.all().order_by('subject_name')  # Sort subjects by name
     subjects = [(subject.id, subject.subject_name) for subject in subjects_data]  # Generate tuples with ID and name
 
     teachers_data = Teacher_data.objects.all()
@@ -171,7 +170,7 @@ def add_teach_subs(request):
 
 @login_required(login_url='login_page')
 def add_course_subs(request):
-    subjects_data = Subjects_data.objects.all()
+    subjects_data = Subjects_data.objects.all().order_by('subject_name')  # Sort subjects by name
     subjects = [(subject.id, subject.subject_name) for subject in subjects_data]
 
     courses_data = Course_data.objects.all()
@@ -208,7 +207,6 @@ def add_course_subs(request):
         'course_subjects': course_subjects
     })
 
-
 @login_required(login_url='login_page')
 def add_timing(request):
     if request.method == 'POST':
@@ -243,7 +241,7 @@ def add_working_days(request):
     if request.method == 'POST':
         data = request.POST
         Total = data.get('Total')
-        Data = data.get('Data')
+        Data = data.get('day_option')
         WorkingDays_data.objects.create(
             user = request.user,
             Total  = Total,

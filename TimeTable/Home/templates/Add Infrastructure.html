@@ -117,9 +117,13 @@
 
           <div class="fields">
             <div class="input-field">
-              <label>Field</label>
-              <input type="text" placeholder="Enter Field" required name="infra_name">
-            </div>
+              <label>Select an option:</label>
+              <select name="infra_name" required>
+                  <option value="working_days">Study</option>
+                  <option value="each_day">Labs</option>
+                  <option value="each_day">Extra</option>
+              </select>
+          </div>
             <div class="input-field">
               <label>Infrastructure(LT's)</label>
               <input type="text" placeholder="Enter Infrastructure" required name="infra">

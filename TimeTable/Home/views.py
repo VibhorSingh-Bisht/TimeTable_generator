@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import Register
 from django.contrib.auth import authenticate, login, logout
-import back_end_logic
+import testing_logic
 import time_gen
 import email_is_not
 from database_data_clean import data_clean_subjects,data_clean_teach,data_clean_course
@@ -256,7 +256,7 @@ def time_table(request):
     start_min = 50
     working_hours = 4
     working_days = 5
-    time_table_slot,working_hours,working_days, time_table_teach, time_table_labs = back_end_logic.main()
+    time_table_slot,working_hours,working_days, time_table_teach, time_table_labs = testing_logic.main()
     time_for_lecture = 50
     s_break = 10
     period_range = range(working_hours + 1)
@@ -281,7 +281,7 @@ def time_table_teach(request):
     start_min = 50
     working_hours = 4
     working_days = 5
-    time_table_slot,working_hours,working_days, time_table_teach, time_table_labs = back_end_logic.main()
+    time_table_slot,working_hours,working_days, time_table_teach, time_table_labs = testing_logic.main()
     time_for_lecture = 50
     s_break = 10
     period_range = range(working_hours + 1)
@@ -306,7 +306,7 @@ def time_table_lab(request):
     start_min = 50
     working_hours = 4
     working_days = 5
-    time_table_slot,working_hours,working_days, time_table_teach, time_table_labs = back_end_logic.main()
+    time_table_slot,working_hours,working_days, time_table_teach, time_table_labs = testing_logic.main()
     time_for_lecture = 50
     s_break = 10
     period_range = range(working_hours + 1)

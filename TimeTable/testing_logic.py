@@ -1,18 +1,4 @@
 import random
-import mysql.connector as sql
-
-
-def Database():
-    mydb = sql.connect(
-    host="localhost",
-    user="new_user",
-    password="password",database = "timetable"
-    )
-
-    cur = mydb.cursor()
-
-    cur.execute('select * from snake')
-    print(cur.fetchall())
 
 
 def main():
@@ -24,21 +10,74 @@ def main():
    
 
 def Data():
-    sec_subjects = {'B.Sc. (H) (Data Science) II':['Python','Engineering','Python(Lab)','MySql','MySql(Lab)','Bootstrap'],
-               'B.Sc. (H) (Data Science) VI':['Java','Java(Lab)','Artificial Intelligence','AI(Lab)','JavaScript','Numpy','Deeplearning'],
-               'Course:B.Sc. (H) (Data Science)	IV':['HTML','HTML(Lab)','CSS','C','Data Structure','Pandas'],
+    sec_subjects = {'B.Sc. (H) (Data Science) II':['Discrete Mathematics','Probability and Distribution Theory','Object Oriented Programming using C++','Data Structures','Data Warehousing and Mining','Disaster Management'],
+               'B.Sc. (H) (Data Science) IV':['Estimation and Inferential Statistics','Introduction to Artificial Intelligence','Applied Data Science  using Python','Operating System','Design and Analysis of Algorithms','Personality Development Programme-II','Applied Data Science  using Python (Lab),Operating System (Lab)','Design and Analysis of Algorithms (Lab)'],
+               'B.Sc. (H) (Data Science) VI':["Introduction to Deep Learning,Business Intelligence Tools and Applications",'Data Visualization Techniques','Cyber Security','Entrepreneurship Development','Introduction to Deep Learning (lab)', "Project Work - Phase -II"],
                'BCA (IV)':['Computer Based Numerical and Statistical Techniques','Database Management Systems','Design and Analysis of Algorithm','Programming  in JAVA','E-Commerce','Personality Development Programme-II',
 'Computer Based Numerical and Statistical Techniques (Lab)','Database Management Systems (Lab),Design and Analysis of Algorithm (Lab)','Programming  in JAVA (Lab)']}
-    classes = {'Study':{'Lt1':'B.tech 1','Lt2':'B.tech 2','Lt3':'Bca 1','Lt4':'Bca 2'},'Extra':{'Lab1':['Python(Lab)','AI(Lab)','Pytorch(Lab)','ML(Lab)'],'Lab2':['MySql(Lab)','HTML(Lab)','Java(Lab)']}}
-    time = {'Classes':50, 'Labs':100} # time is in minutes
-    day = {'each_day':4, 'working_day':5}
-    teacher = {'Vibhor':['Python','C','Java','Engineering','Python(Lab)','C(Lab)','Java(Lab)'],
-               'Vibhor Singh':['HTML', 'CSS','JavaScript','Bootstrap','HTML(Lab)'],
-               'Vibhor Singh Bisht':['Artificial Intelligence', 'Machine Learning', 'Deeplearning','AI(Lab)','ML(Lab)'],
-               'VSB':['Pytorch', 'Numpy', 'Pandas',"Pytorch(Lab)"],
-               'Vibhor Bisht':['MySql', 'Data Science', 'Data Structure','MySql(Lab)']
-               }
     
+    
+    classes = {
+    'Study': {
+        'Lt1': 'B.tech 1',
+        'Lt2': 'B.tech 2',
+        'Lt3': 'Bca 1',
+        'Lt4': 'Bca 2'
+    },
+    'Extra': {
+        'Lab1': [
+            'Discrete Mathematics', 'Probability and Distribution Theory', 'Object Oriented Programming using C++',
+            'Data Structures', 'Data Warehousing and Mining', 'Disaster Management',
+            'Estimation and Inferential Statistics', 'Introduction to Artificial Intelligence', 
+            'Applied Data Science using Python', 'Operating System', 'Design and Analysis of Algorithms', 
+            'Personality Development Programme-II', 'Applied Data Science using Python (Lab)', 'Operating System (Lab)', 
+            'Design and Analysis of Algorithms (Lab)', 'Introduction to Deep Learning', 
+            'Business Intelligence Tools and Applications', 'Data Visualization Techniques', 'Cyber Security', 
+            'Entrepreneurship Development', 'Introduction to Deep Learning (lab)', 'Project Work - Phase -II',
+            'Computer Based Numerical and Statistical Techniques', 'Database Management Systems', 
+            'Design and Analysis of Algorithm', 'Programming in JAVA', 'E-Commerce', 
+            'Personality Development Programme-II', 'Computer Based Numerical and Statistical Techniques (Lab)', 
+            'Database Management Systems (Lab)', 'Design and Analysis of Algorithm (Lab)', 'Programming in JAVA (Lab)'
+        ],
+        'Lab2': [
+            'Probability and Distribution Theory', 'Object Oriented Programming using C++', 'Data Structures', 
+            'Data Warehousing and Mining', 'Disaster Management', 'Estimation and Inferential Statistics', 
+            'Introduction to Artificial Intelligence', 'Applied Data Science using Python', 'Operating System', 
+            'Design and Analysis of Algorithms', 'Personality Development Programme-II', 'Applied Data Science using Python (Lab)', 
+            'Operating System (Lab)', 'Design and Analysis of Algorithms (Lab)', 'Introduction to Deep Learning', 
+            'Business Intelligence Tools and Applications', 'Data Visualization Techniques', 'Cyber Security', 
+            'Entrepreneurship Development', 'Introduction to Deep Learning (lab)', 'Project Work - Phase -II', 
+            'Computer Based Numerical and Statistical Techniques', 'Database Management Systems', 
+            'Design and Analysis of Algorithm', 'Programming in JAVA', 'E-Commerce', 
+            'Personality Development Programme-II', 'Computer Based Numerical and Statistical Techniques (Lab)', 
+            'Database Management Systems (Lab)', 'Design and Analysis of Algorithm (Lab)', 'Programming in JAVA (Lab)'
+        ]
+    }
+}
+
+
+    time = {'Classes':50, 'Labs':100} # time is in minutes
+    day = {'each_day':6, 'working_day':5}
+    teacher = {'Harvinder Malhotra':['Cloud Computing'],
+               'Dr. Ashutosh Bhatt ':[  'Computer Graphics', 'Formal Languages and Automata Theory',' Data Structures',' Computer Graphics Lab', 'Data Structures Lab'],
+               'Mrs. Anupama Mishra'  :['Applied Data Science using Python, Machine Learning & Pattern Recognition',' OOP using Java, Applied Data Science using Python LAB',' Machine Learning & Pattern Recognition LAB',' OOP using Java LAB'],
+               'Mr. Bineet Kumar Joshi' :['Network Security',' Artificial Intelligence',' Object Oriented Programming and Design using C++(A)', 'Artificial Intelligence LAB',' Object Oriented Programming and Design using C++ LAB'],
+              'Dr. Deepak Srivastava':['Data Base Management Systems', 'Database Management Systems', 'Data Visualization Techniques', 'Database Management Systems Lab', 'Data Base Management Systems LAB'],
+              'D.S. Rao':['Machine Learning', 'Introduction to IT Verticals'],
+              'Mr. Gaurav Aggarwal':['Data Structures(Section B)', 'Web Development using PHP', 'Data Communication and Computer Networks (Section B)', 'Data Structures(Section B) Lab', 'Web Development using PHP Lab'],
+              'Mr. Gaurav Sharma':['Data Communication and Computer Networks(Sec B)', 'Introduction to Deep Learning', 'E-Commerce, CBNST LAB', 'Introduction to Deep Learning Lab'], 
+              'Dr. Pooja Joshi':['Data Communication and Computer Networks', 'Programming in JAVA, Operating System', 'Programming in JAVA Lab, Operating System Lab'],
+              'Mr. PNS Rao':['Digital Electronics', 'Digital Electronics LAB', 'Computer Organization and Architecture'],
+              'PrincyTyagi':['Design and Analysis of Algorithms', 'Operating Systems', 'Design and Analysis of Algorithms Lab', 'Operating Systems Lab', 'Operating Systems Lab'],
+              'Mr. Rachit Lakhera':['Computer Organization and Architecture', 'Computer Networks', 'Software Engineering', 'Computer Networks LAB'],
+              'Mr. Sanjay Kumar':['Computer Organization and Architecture (Sec-C)', 'Operating System, Data Structures Using ‘C’', 'Operating System LAB', 'Data Structures Using ‘C’ LAB'],
+              'Ms. Shivani Sharma':['Theory of Automata', 'Data Communication and Computer Networks', 'Design and Analysis of Algorithm', 'Design and Analysis of Algorithm LAB'],
+              'Mr. Satyendra Singh Rawat':['Design and Analysis of Algorithms', 'Cloud Computing Security and Management', 'Compiler Design', 'Design and Analysis of Algorithms LAB', 'Cloud Computing Security and Management LAB', 'Compiler Design LAB'],
+              'Ms. Vaishali Gupta' :['Data Warehousing and Mining', 'Data Structures(Sec A)', 'Object Oriented Programming and Design using C++ (Sec C)', 'Data Structures LAB(Sec A)',' Object Oriented Programming and Design using C++ LAB(Sec C)'],
+              'Dr. Vibhor Sharma':['Object Oriented Programming Using C++', 'Business Intelligence Tools and Applications', 'Object Oriented Programming and Design using C++(Sec B)', 'Object Oriented Programming Using C++ Lab', 'Object Oriented Programming and Design using C++ Lab (Sec B)'],
+              
+            'Dr. Vinay Avasthi'  :['Introduction to Cyber Security/Cyber Security'],
+              }
     class_name = list(sec_subjects)
     each_day = day['each_day']
     working_days = day['working_day']

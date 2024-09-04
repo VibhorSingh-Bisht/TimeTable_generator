@@ -21,7 +21,7 @@ def login_page(request):
         password = request.POST.get('password')
 
         if not User.objects.filter(email= email).exists():
-            messages.error(request,'Incorrect username')
+            messages.error(request,'Incorrect username or')
             #return redirect('signup')
         
         user = authenticate(username = email,password = password)

@@ -1,7 +1,6 @@
 import random
 import mysql.connector as sql
 
-
 def Database():
     mydb = sql.connect(
     host="localhost",

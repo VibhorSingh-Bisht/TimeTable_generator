@@ -78,7 +78,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'timetable',
-        'USER': 'new_user',
+        'USER': 'Timetable_admin',
         'PASSWORD': 'password',
         'HOST': 'localhost',  
         'PORT': '3306',        
